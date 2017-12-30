@@ -9,6 +9,7 @@ ziyaret ettiğim sitelerin başında geliyor. Blog'umda yazıları GitHub üzeri
 haliyle gözüm oldukça yoruluyordu. Ben de böyle bir çözüm buldum.
 
 *   Stylish
+
 Stylish, tarayıcı web mağazaları üzerinden kolayca kurabileceğiniz bir eklenti. GitHub da dahil olmak
 üzere birçok web sitesi için çeşit çeşit temalar bulunduruyor. Yapmanız gereken tek şey eklentiyi
 kurduktan sonra tarayıcınızın menüsünden eklentiye tıklayarak listedeki temalardan birini seçmek.
