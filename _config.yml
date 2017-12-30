@@ -1,6 +1,5 @@
 title: Enes Işık
 description: Enes Işık, 16 yaşında, 10. sınıf öğrencisi, nam-ı diğer; Heykır.
 show_downloads: false
-google_analytics:
-  id: "UA-109541226-1"
+google_analytics: "UA-109541226-1"
 theme: jekyll-theme-hacker
