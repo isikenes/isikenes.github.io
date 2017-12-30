@@ -15,6 +15,7 @@ Stylish, tarayıcı web mağazaları üzerinden kolayca kurabileceğiniz bir ekl
 kurduktan sonra tarayıcınızın menüsünden eklentiye tıklayarak listedeki temalardan birini seçmek.
 Benim oldukça hoşuma gitti. Sanırım kolay kolay kaldırmayacağım eklentilerden birisi olacak.
 
+---
 
 ### [](#header-2)Python'da "Hello World" Yazma
 
