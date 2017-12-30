@@ -17,6 +17,8 @@ Benim oldukça hoşuma gitti. Sanırım kolay kolay kaldırmayacağım eklentile
 
 ---
 
+
+
 ### [](#header-2)Python'da "Hello World" Yazma
 
 Aşağıdaki kodlarla python üzerinden terminale "hello world" yazabilirsiniz. (Test)
