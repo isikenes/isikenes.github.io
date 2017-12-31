@@ -76,6 +76,8 @@ xmastree() {
 [ "$1" = "loop" ] && exec watch --color -n -1 "$0"
 xmastree "$@"
 ```
+Çalıştırdığınızda resimdeki gibi bir çıktı elde edeceksiniz.
+
 ![](https://raw.githubusercontent.com/isikenes/isikenes.github.io/master/assets/images/chrtreepp.png)
 
 ---
