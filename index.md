@@ -76,7 +76,10 @@ xmastree() {
 [ "$1" = "loop" ] && exec watch --color -n -1 "$0"
 xmastree "$@"
 ```
+![](https://raw.githubusercontent.com/isikenes/isikenes.github.io/master/assets/images/chrtreepp.png)
 
+---
+---
 
 ### [](#header-2)Github Dark Theme
 Gerek tasarımı, gerekse gözü yormaması olsun kara temaları hep sevmişimdir. GitHub da en sık
@@ -90,6 +93,7 @@ Stylish, tarayıcı web mağazaları üzerinden kolayca kurabileceğiniz bir ekl
 kurduktan sonra tarayıcınızın menüsünden eklentiye tıklayarak listedeki temalardan birini seçmek.
 Benim oldukça hoşuma gitti. Sanırım kolay kolay kaldırmayacağım eklentilerden birisi olacak.
 
+---
 ---
 
 
