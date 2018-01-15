@@ -1,1 +1,1 @@
-# My Personel Blog
+# My Personal Blog
