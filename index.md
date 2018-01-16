@@ -18,7 +18,6 @@ java helloworld
 ```
 That's it!
 ---
----
 
 ### [](#header-3)Shell Script - Christmas Tree
 Aşağıdaki kodları christmastree.sh isminde dosyaya yazdıktan sonra terminale:
