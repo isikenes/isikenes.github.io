@@ -2,6 +2,24 @@
 layout: default
 ---
 
+### [](#header-4)Writing "Hello World" in Java
+You must type this codes to helloworld.java
+```java
+public class helloworld {
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+	}
+}
+```
+Then run this codes in terminal:
+```
+javac helloworld.java
+java helloworld
+```
+That's it!
+---
+---
+
 ### [](#header-3)Shell Script - Christmas Tree
 Aşağıdaki kodları christmastree.sh isminde dosyaya yazdıktan sonra terminale:
 ```
