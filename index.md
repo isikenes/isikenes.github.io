@@ -22,11 +22,7 @@ That's it!
 ---
 
 ### [](#header-3)Shell Script - Christmas Tree
-Aşağıdaki kodları christmastree.sh isminde dosyaya yazdıktan sonra terminale:
-```
-./christmastree.sh loop
-```
-yazarak çalıştırabilirsiniz. Geçelim kodlara :)
+Create christmastree.sh file. Then type the codes below:
 
 ```shell
 #!/bin/bash
@@ -95,33 +91,23 @@ xmastree() {
 [ "$1" = "loop" ] && exec watch --color -n -1 "$0"
 xmastree "$@"
 ```
-Çalıştırdığınızda resimdeki gibi bir çıktı elde edeceksiniz.
+
+Now, you can run it on terminal:
+
+```
+./christmastree.sh loop
+```
+
+When you run, you will see a output like below:
 
 ![](https://raw.githubusercontent.com/isikenes/isikenes.github.io/master/assets/images/chrtreepp.png)
 
 ---
 ---
 
-### [](#header-2)Github Dark Theme
-Gerek tasarımı, gerekse gözü yormaması olsun kara temaları hep sevmişimdir. GitHub da en sık
-ziyaret ettiğim sitelerin başında geliyor. Blog'umda yazıları GitHub üzerinden yazdığım için
-haliyle gözüm oldukça yoruluyordu. Ben de böyle bir çözüm buldum.
+### [](#header-1)Writing "Hello World" in Python
 
-*   Stylish.
-
-Stylish, tarayıcı web mağazaları üzerinden kolayca kurabileceğiniz bir eklenti. GitHub da dahil olmak
-üzere birçok web sitesi için çeşit çeşit temalar bulunduruyor. Yapmanız gereken tek şey eklentiyi
-kurduktan sonra tarayıcınızın menüsünden eklentiye tıklayarak listedeki temalardan birini seçmek.
-Benim oldukça hoşuma gitti. Sanırım kolay kolay kaldırmayacağım eklentilerden birisi olacak.
-
----
----
-
-
-
-### [](#header-1)Python'da "Hello World" Yazma
-
-Aşağıdaki kodlarla python üzerinden terminale "hello world" yazabilirsiniz. (Test)
+You can write "Hello World" in Python with this code:
 
 ```python
 print("Hello World")
