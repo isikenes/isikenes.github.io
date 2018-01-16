@@ -17,6 +17,8 @@ javac helloworld.java
 java helloworld
 ```
 That's it!
+
+---
 ---
 
 ### [](#header-3)Shell Script - Christmas Tree
