@@ -2,6 +2,38 @@
 layout: default
 ---
 
+### [](#header-6)Example for Arithmetics in Java
+Type this codes to arithmetics.java:
+```java
+import java.io.*;
+
+public class arithmetics
+{ public static void main(String[] args)
+{
+    int number1=1;
+    int number2=2;
+    number1+=number2;
+    System.out.println("number1+=:"+number1);
+    number1-=number2;
+    System.out.println("number1-=:"+number1);
+    number1*=number2;
+    System.out.println("number1*=:"+number1);
+    number1/=number2;
+    System.out.println("number1/=:"+number1);
+}
+        }
+```
+If you run this, output is like below:
+```
+number1+=:3
+number1-=:1
+number1*=:2
+number1/=:1
+```
+
+---
+---
+
 ### [](#header-5)Addition in Java
 This is a basic example of addition in Java.
 ```java
@@ -28,6 +60,9 @@ Then type the codes below to terminal:
 javac addition.java
 java addition
 ```
+
+---
+---
 
 ### [](#header-4)Writing "Hello World" in Java
 You must type this codes to helloworld.java
