@@ -2,6 +2,33 @@
 layout: default
 ---
 
+### [](#header-5)Addition in Java
+This is a basic example of addition in Java.
+```java
+import javax.swing.*;
+
+public class addition
+{
+    public static void main(String args[])
+    {
+        int number1;
+        int number2;
+        int total;
+        number1=Integer.parseInt(JOptionPane.showInputDialog("Enter the first number: "));
+        number2=Integer.parseInt(JOptionPane.showInputDialog("Enter the second number: "));
+        total=number1+number2;
+        JOptionPane.showMessageDialog(null,"Total= "+total);
+    }
+    
+            
+}
+```
+Then type the codes below to terminal:
+```
+javac addition.java
+java addition
+```
+
 ### [](#header-4)Writing "Hello World" in Java
 You must type this codes to helloworld.java
 ```java
