@@ -2,7 +2,7 @@
 layout: default
 ---
 
-### [](header-6)actorial Calculation in Java
+### [](header-6)Factorial Calculation in Java
 Type this codes to BPIH4E7B.java:
 ```java
 import javax.swing.*;
@@ -27,7 +27,7 @@ javac BPIH4E7B.java
 
 java BPIH4E7B
 ```
-You can calculate factorials of you have entered numbers.
+You can calculate factorials of your entered numbers.
 Example:
 ![](https://raw.githubusercontent.com/isikenes/isikenes.github.io/master/assets/images/factcalc.png)
 
