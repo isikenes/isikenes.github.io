@@ -2,7 +2,39 @@
 layout: default
 ---
 
-### [](#header-6)Example for Arithmetics in Java
+### [](header-6)actorial Calculation in Java
+Type this codes to BPIH4E7B.java:
+```java
+import javax.swing.*;
+
+public class BPIH4E7B {
+    public static void main(String args[]) {
+        String s;
+        long factorial=1;
+        int number=Integer.parseInt(JOptionPane.showInputDialog("Enter a number: "));
+        for(int i=1;i<=number;i++)
+        {
+            factorial*=i;
+        }
+        s=""+number+"!="+factorial;
+        JOptionPane.showMessageDialog(null,s,"Factorial",JOptionPane.PLAIN_MESSAGE);
+    }
+}
+```
+Then enter this commands to terminal:
+```
+javac BPIH4E7B.java
+
+java BPIH4E7B
+```
+You can calculate factorials of you have entered numbers.
+Example:
+![](https://raw.githubusercontent.com/isikenes/isikenes.github.io/master/assets/images/factcalc.png)
+
+---
+---
+
+### [](#header-5)Example for Arithmetics in Java
 Type this codes to arithmetics.java:
 ```java
 import java.io.*;
@@ -34,7 +66,7 @@ number1/=:1
 ---
 ---
 
-### [](#header-5)Addition in Java
+### [](#header-4)Addition in Java
 This is a basic example of addition in Java.
 ```java
 import javax.swing.*;
@@ -64,7 +96,7 @@ java addition
 ---
 ---
 
-### [](#header-4)Writing "Hello World" in Java
+### [](#header-3)Writing "Hello World" in Java
 You must type this codes to helloworld.java
 ```java
 public class helloworld {
@@ -83,7 +115,7 @@ That's it!
 ---
 ---
 
-### [](#header-3)Shell Script - Christmas Tree
+### [](#header-2)Shell Script - Christmas Tree
 Create christmastree.sh file. Then type the codes below:
 
 ```shell
