@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Tıkla</title>
+	</head>
+
+	<body>
+		
+	</body>
+
+	<script>
+		function clickCounter(){
+			if(typeof(Storage)!=="undefined"){
+				if (localStorage.clickcount){
+					localStorage.clickcount=Number(localStorage.clickcount)+1;
+				}else{
+					localStorage.clickcount=1;
+				}
+
+				document.getElementById('result').innerHTML="Butona "+localStorage.clickcount+" kez tıkladınız."
+			}
+		}
+	</script>
+
+	<p><button onclick="clickCounter()" type="button">Tıkla</button></p>
+
+	<div id="result"></div>
+
+	<p>Butona tıklayarak sayacın arttığını görebilirsiniz.</p>
+
+</html>
