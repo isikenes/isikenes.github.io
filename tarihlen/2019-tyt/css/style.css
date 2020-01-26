@@ -24,7 +24,7 @@ body {
 }
 
 .navigation-buttons {
-  font-size: 25px;
+  font-size: 20px;
   text-align: center;
   padding: 10px 0px;
   float: right;
@@ -47,7 +47,7 @@ body {
   height: 45px;
   padding: 0;
   margin-top: 20px;
-  font: 400 5rem 'Roboto Slab';
+  font: 400 3rem 'Roboto Slab';
   letter-spacing: 0.025em;
   border: none;
   background: transparent;
@@ -77,7 +77,7 @@ button:disabled{
 }
 
 #name-submit-button {
-  font-size: 25px;
+  font-size: 20px;
   margin-top: 10vw;
 }
 
@@ -88,7 +88,7 @@ button:disabled{
 }
 
 #question h2 {
-  font-size: 4vw;
+  font-size: 5vw;
   font-weight: 600;
   padding: 5px;
   margin-top: 5vw;
@@ -237,7 +237,7 @@ label {
   float: left;
   padding-left: 20px;
   font-weight: 500;
-  font-size: 2.0em;
+  font-size: 1.3em;
 }
 
 /*Pie chart style starts*/
@@ -289,26 +289,21 @@ sup {
 /*Pie chart style ends*/
 
 #result{
-  font-size: 50px;
   padding:10px;
   height:100%;
   margin-top: 10vw;
 }
 #result .score-label h1{
-  font-size: 50px;
   font-weight:600;
 }
 #result .score-label h1 i{
-  font-size: 50px;
   margin-left:10px;
 }
 #result .score-label h1,#result .message{
-  font-size: 50px;
   text-align:center;
 }
 
 #result .score-detail h3{
-  font-size: 50px;
   margin-top: 19px;
   padding-left: 15px;
 }
