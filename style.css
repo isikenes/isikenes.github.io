@@ -3,7 +3,7 @@ body {
     height: 100%;
     font-family: Lora, "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #fff;
-    background-color:#232323;
+    background-color: #232323;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: rgba(255, 255, 255, .2);
@@ -70,7 +70,7 @@ a:focus {
     border-bottom: 1px solid rgba(255, 255, 255, .3);
     text-transform: uppercase;
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color:#232323;
+    background-color: #232323;
 }
 
 .navbar-custom .navbar-brand {
@@ -418,4 +418,108 @@ ul li {
 
 .owl-theme .owl-controls .owl-page.active span {
     background-color: #B6A17C;
+}
+
+.music-player {
+    width: 75px;
+    height: 50px;
+    position: relative;
+    opacity: 1;
+    transition: opacity 200ms;
+}
+
+.music-player.music-player--disabled {
+    opacity: 0.26;
+}
+
+.music-player__wrapper {
+    position: fixed;
+    right: 2rem;
+    bottom: 1.5rem;
+}
+
+.music-player__button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: 1;
+    width: 100%;
+    border: 0;
+}
+
+.music-player__play {
+    background: transparent;
+    display: none;
+}
+
+.music-player--disabled .music-player__play {
+    display: block;
+}
+
+.music-player--disabled .music-player__pause {
+    display: none;
+}
+
+.music-player__bar {
+    background: #fff;
+    width: 10px;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    animation-name: music-bar-anim;
+    animation-iteration-count: infinite;
+}
+
+.music-player--disabled .music-player__bar {
+    animation-play-state: paused;
+}
+
+.music-player__bar1 {
+    animation-duration: 1.3s;
+    left: 0;
+}
+
+.music-player__bar2 {
+    animation-duration: 1.8s;
+    left: 15px;
+}
+
+.music-player__bar3 {
+    animation-duration: 2.2s;
+    left: 30px;
+}
+
+.music-player__bar4 {
+    animation-duration: 2s;
+    left: 45px;
+}
+
+.music-player__bar5 {
+    animation-duration: 1.5s;
+    left: 75px;
+}
+
+@keyframes music-bar-anim {
+    0% {
+        height: 10px;
+    }
+
+    50% {
+        height: 50px;
+    }
+
+    100% {
+        height: 10px;
+    }
+}
+
+.sr-only {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
 }
