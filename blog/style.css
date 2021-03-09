@@ -152,28 +152,33 @@ ul li {
     font-size: 80px;
 }
 
-.p1 {
-    font-size: 32px;
+.p0 {
+    font-size: 50px;
+    text-shadow: 3px 3px 3px gray;
+}
 
+.p1 {
+    font-size: 20px;
 }
 
 .blog-1 {
-    height: 300px;
+    height: 12em;
     background-color: #232323;
-    padding-top: 30px;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
     color: white;
-    font-size: 30px;
+    font-size: 32px;
 }
 
 .blog-2 {
-    height: 300px;
+    height: 12em;
     background-color: black;
-    padding-top: 30px;
-    padding-left: 50px;
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
     color: white;
-    font-size: 30px;
+    font-size: 32px;
 }
 
 .pblog {
