@@ -1,0 +1,419 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="ghpages-materialize.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="style.css"  media="screen,projection"/>
+    <link rel="shortcut icon" type="icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.0/css/swiper.min.css">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <title>Biyoloji Epim</title>
+    <style>
+        body {
+            font-size: 14px;
+            color:#000;
+            margin: 0;
+            padding: 0;
+        }
+        .swiper-container {
+            width: 100%;
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #00ff39;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+        a div{
+            word-break: break-all;
+        }
+        #backgr-img {
+            position: absolute;
+            top: -15px;
+            right: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.45);
+        }
+        .active {
+            background-color: #edd900;
+        }
+        a {
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+<div id="intro_screen">
+    <div class="intro_block">
+        <div class="quiz-name"><h4></h4><h6>Başlamak için tıklayın!</h6></div>
+    </div>
+</div>
+<div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+    </div>
+</div>
+
+<div class="game_screen valign-wrapper">
+
+
+    <div class="card small outer-wrapper valign center">
+
+        <div class="card-image waves-block waves-light picture-wrapper" act="no">
+            <img class="activator materialboxed" id="question-picture" src="">
+        </div>
+
+        <div class="card-content">
+        	<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+            <div class="answers collection">
+                <a href="#!" class="waves-effect waves-light btn-large" style="visibility: inherit;"><div></div></a>
+                <a href="#!" class="waves-effect waves-light btn-large" style="visibility: inherit;"><div></div></a>
+                <a href="#!" class="waves-effect waves-light btn-large" style="visibility: inherit;"><div></div></a>
+                <a href="#!" class="waves-effect waves-light btn-large" style="visibility: inherit;"><div></div></a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card small results-page">
+        <h4 class="results"></h4>
+        <table class="table-results striped">
+            <thead>
+            <tr>
+                <td>Soru: </td>
+                <td>Cevabınız: </td>
+                <td>Doğru cevap: </td>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr class="question-row row-template">
+                <td class="question-cell">
+                </td>
+                <td class="responce-cell">
+                </td>
+                <td class="correct-cell">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="#" class="waves-effect waves-light btn try-again">Tekrar Dene!</a>
+    </div>
+
+</div>
+<div class="explanation-wrapper">
+    <div class="answer-state"></div>
+    <div class="explanation"></div>
+    <div><div class="next-question wide-button">Sıradaki Soru</div></div>
+</div>
+<script src="jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="materialize.min.js"></script>
+<script type="text/javascript" src="modernizr.js"></script>
+<script type="text/javascript" src="flowtype.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.0/js/swiper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.0/js/swiper.jquery.min.js"></script>
+<script type="text/javascript">
+
+var question = 0;
+var score = 0;
+var answered = false;
+window.onload = function(){
+
+    var quizName = "Biyoloji Epim";
+
+    $('.quiz-name h4').text(quizName);
+
+    Array.prototype.shuffle = function (b) {
+        var i = this.length, j, t;
+        while (i) {
+            j = Math.floor(( i-- ) * Math.random());
+            t = b && typeof this[i].shuffle !== 'undefined' ? this[i].shuffle() : this[i];
+            this[i] = this[j];
+            this[j] = t;
+        }
+
+        return this;
+    };
+
+
+
+    
+    window.questions = [{"question":"D\u00fczenli bilgi \u00fcretim \u00e7al\u0131\u015fmalar\u0131d\u0131r.","questionPicture":"","correct":0,"answers":["Bilim","Teknoloji","\u00c7al\u0131\u015fma","Teknik"]},{"question":"Bir problemle ilgili be\u015f duyuya dayanan incelemelere denir.","questionPicture":"","correct":1,"answers":["Hipotez","G\u00f6zlem","\u00c7\u0131kar\u0131m","Tahmin"]},{"question":"Bir arac\u0131n yard\u0131m\u0131 olmadan do\u011frudan duyu organlar\u0131yla yap\u0131lan g\u00f6zlemdir.","questionPicture":"","correct":2,"answers":["Veri","Nicel G\u00f6zlem","Nitel G\u00f6zlem","Deney"]},{"question":"\u00d6l\u00e7\u00fc aletleri ve standart birimler kullan\u0131larak yap\u0131lan g\u00f6zlemdir.","questionPicture":"","correct":3,"answers":["Nitel","Teori","Hipotez","Nicel"]},{"question":"G\u00f6zlemler sonucu elde edilen, ayn\u0131 \u015fartlarda ayn\u0131 sonu\u00e7lar\u0131 veren ger\u00e7eklere denir.","questionPicture":"","correct":0,"answers":["Veri","G\u00f6zlem","Bilgi","Teori"]},{"question":"Probleme ge\u00e7ici olarak sunulmu\u015f, b\u00fct\u00fcn verilere uygun \u00e7\u00f6z\u00fcm \u00f6nerisine denir.","questionPicture":"","correct":0,"answers":["Hipotez","Kanun","Teori","Deney"]},{"question":"Hipotezin denenmesinden \u00f6nce hipotezden mant\u0131k yoluyla \u00e7\u0131kar\u0131lan sonu\u00e7lara denir.","questionPicture":"","correct":0,"answers":["Tahmin","Hipotez","Kanun","Problem"]},{"question":"Hipoteze dayal\u0131 tahminlerin ge\u00e7erli, somut ve bilimsel y\u00f6ntemler kullan\u0131larak istenilen sonucu verip vermedi\u011finin kontrol edilmesidir.","questionPicture":"","correct":0,"answers":["Kontroll\u00fc deneyler yapma","Deney yapma","Kontrols\u00fcz deneyler yapma","\u0130zinsiz\/Yasak deneyler yapma"]},{"question":"K\u00f6kle\u015fmi\u015f hipotezlere denir.","questionPicture":"","correct":0,"answers":["Teori","Kanun","Problem","Deney"]},{"question":"Bu uygulamay\u0131 yapan ki\u015fi kimdir?","questionPicture":"","correct":0,"answers":["Enes I\u015f\u0131k","Mehmet Turan G\u00f6zel","Ali Esar \u00c7ilsalar","Kadir \u0130mra\u011f"]},{"question":"Do\u011frulu\u011fu b\u00fct\u00fcn bilimlerce kabul edilmi\u015f ger\u00e7eklere denir.","questionPicture":"","correct":0,"answers":["Kanun","Yasa","Hipotez","Problem"]},{"question":"Canl\u0131 bilimi ya da ya\u015fam bilimidir.","questionPicture":"","correct":0,"answers":["Biyoloji","Kimya","Fizik","Matematik"]},{"question":"Hayvanlar alemini inceleyen bilim dal\u0131d\u0131r.","questionPicture":"","correct":0,"answers":["Zooloji","Botanik","Biyokimya","Biyoloji"]},{"question":"Bitkiler alemini inceleyen bilim dal\u0131d\u0131r.","questionPicture":"","correct":0,"answers":["Botanik","\u00c7i\u00e7ek\u00e7ilik","Morfoloji","Sitoloji"]},{"question":"Canl\u0131 yap\u0131s\u0131n\u0131 olu\u015fturan h\u00fccrelerin yap\u0131s\u0131n\u0131 ve \u00f6zelliklerini inceler.","questionPicture":"","correct":0,"answers":["Sitoloji","Botanik","Zooloji","Fizyoloji"]},{"question":"Su i\u00e7inde ya\u015f\u0131yan canl\u0131lar\u0131, suyun \u00f6zelliklerini ve canl\u0131lar\u0131n bu ortamdaki ya\u015famlar\u0131n\u0131 inceler.","questionPicture":"","correct":0,"answers":["Hidrobiyoloji","Hidrosfer","Taksonomi","Ekoloji"]},{"question":"Canl\u0131lar\u0131n i\u00e7 yap\u0131lar\u0131n\u0131 inceler.","questionPicture":"","correct":0,"answers":["Anatomi","Morfoloji","Evrim","Genetik"]},{"question":"Canl\u0131lar\u0131n d\u0131\u015f g\u00f6r\u00fcn\u00fc\u015f\u00fcn\u00fc ve \u015feklini inceler.","questionPicture":"","correct":0,"answers":["Morfoloji","Biyoloji","Sitoloji","Fizyoloji"]},{"question":"Canl\u0131larda doku ve organlar\u0131n i\u015fleyi\u015fini ve g\u00f6revlerini inceler.","questionPicture":"","correct":0,"answers":["Fizyoloji","Botanik","Sistematik","Genetik"]},{"question":"Canl\u0131lar\u0131n \u00e7e\u015fitli \u00f6zelliklerini, g\u00fcnl\u00fck ya\u015fant\u0131da kullan\u0131lmalar\u0131n\u0131, gen al\u0131\u015fveri\u015flerini teknoloji ve m\u00fchendislik bilgilerini kullanarak inceler.","questionPicture":"","correct":0,"answers":["Biyoteknoloji","Embriyoloji","Morfoloji","Biyokimya"]},{"question":"S\u0131n\u0131fland\u0131rma bilimidir. Canl\u0131lar\u0131 \u00f6zelliklerine g\u00f6re s\u0131n\u0131fland\u0131r\u0131r.","questionPicture":"","correct":0,"answers":["Taksonomi (Sistematik)","Anatomi","Sitoloji","Molek\u00fcler Biyoloji"]},{"question":"Canl\u0131lar\u0131n hangi molek\u00fcllerden olu\u015ftu\u011funu ve bu molek\u00fcllerin fonksiyonlar\u0131n\u0131 ara\u015ft\u0131r\u0131r.","questionPicture":"","correct":0,"answers":["Molek\u00fcler Biyoloji","Biyokimya","Kimya","Genetik"]},{"question":"Canl\u0131lar\u0131n yap\u0131s\u0131nda bulunan kimyasal maddeleri ve bunlar\u0131n tepkimelerini inceler.","questionPicture":"","correct":0,"answers":["Biyokimya","Molek\u00fcler Biyoloji","Biyoteknoloji","Hidrobiyoloji"]},{"question":"Canl\u0131lar\u0131n orjinlerini, milyonlarca y\u0131l i\u00e7inde ge\u00e7irdikleri kabul edilen de\u011fi\u015fimleri ve t\u00fcr olu\u015fumlar\u0131n\u0131 ara\u015ft\u0131r\u0131r.","questionPicture":"","correct":0,"answers":["Evrim","Mutasyon","Taksonomi","Genetik"]},{"question":"Canl\u0131lar\u0131n birbirleriyle ve \u00e7evreleriyle olan ili\u015fkilerini inceler.","questionPicture":"","correct":0,"answers":["Ekoloji","Zooloji","Botanik","Morfoloji"]},{"question":"Canl\u0131lar\u0131n kal\u0131tsal \u00f6zelliklerini ve bu \u00f6zelliklerin aktar\u0131lma kurallar\u0131n\u0131 inceler.","questionPicture":"","correct":0,"answers":["Genetik","Evrim","Biyokimya","Biyoteknoloji"]},{"question":"Canl\u0131lar\u0131 ilk defa ortak \u00f6zelliklerine g\u00f6re s\u0131n\u0131fland\u0131ran bilim adam\u0131d\u0131r.","questionPicture":"","correct":0,"answers":["Aristo","Robert Hooke","Wilmut ve arkada\u015flar\u0131","James D. Watson"]},{"question":"\u015ei\u015fe mantar\u0131 kesitini mikroskopta inceleyerek h\u00fccre kavram\u0131n\u0131 ilk kez kullanan bilim adam\u0131d\u0131r.","questionPicture":"","correct":0,"answers":["Robert Hooke","Aristo","Carl von Linne","Otto Mayerof"]},{"question":"Mikroskobu kullanarak tek h\u00fccreli canl\u0131lar\u0131 g\u00f6stermeyi ba\u015faran ve bakterilerin \u015feklini \u00e7izen bilim adam\u0131d\u0131r.","questionPicture":"","correct":0,"answers":["A. van Leeuwenhook","Carl von Linne","Alexander Fleming","Stewen Howell"]},{"question":"\u0130lk bilimsel s\u0131n\u0131fland\u0131rmay\u0131 yapan, sistemati\u011fin temelini atan ve t\u00fcr\u00fcn de\u011fi\u015fmezli\u011fini savunan bilim adam\u0131d\u0131r.","questionPicture":"","correct":0,"answers":["Carl von Linne","Rudolph Virchow","Gregor Mendel","Charles Darwin"]},{"question":"Genetik biliminin kurucusudur.","questionPicture":"","correct":0,"answers":["Gregor Mendel","Correns Boveri","Wilhelm R\u00f6ntgen","Louis Pasteur"]},{"question":"Evrim teorisini ortaya atarak canl\u0131lar\u0131n ortak bir atadan k\u00f6ken ald\u0131\u011f\u0131n\u0131 s\u00f6ylemi\u015ftir.","questionPicture":"","correct":0,"answers":["Charles Darwin","J. Friedrich Miescher","Beijrink","S. J. Singer ve G. L. Nicolson"]},{"question":"T\u0131pta te\u015fhis ve tedavi amac\u0131yla kullan\u0131lan r\u00f6ntgeni (X \u0131\u015f\u0131nlar\u0131n\u0131) bulmu\u015ftur.","questionPicture":"","correct":0,"answers":["Wilhelm R\u00f6ntgen","Otto Mayerof","Aristo","E. A. F. Ruska"]},{"question":"\u0130lk hayvan (koyun, Dolly) klonlamas\u0131n\u0131 ger\u00e7ekle\u015ftiren bilim adam\u0131d\u0131r.","questionPicture":"","correct":0,"answers":["Wilmut ve arkada\u015flar\u0131","A. van Leeuwenhook","Carl von Linne","Robert Hooke"]},{"question":"Hangisi \u00e7ok h\u00fccrelidir?","questionPicture":"","correct":0,"answers":["Bitki","Bakteri","Arke","Paramesyum"]},{"question":"Zarla \u00e7evrili bir \u00e7ekirde\u011fi ve ribozom d\u0131\u015f\u0131nda organeli olmayan canl\u0131lard\u0131r.","questionPicture":"","correct":0,"answers":["Prokaryot","\u00d6karyot","Tek h\u00fccreli","\u00c7ok h\u00fccreli"]},{"question":"Zarla \u00e7evrili \u00e7ekirde\u011fi ve b\u00fct\u00fcn organelleri olan canl\u0131lard\u0131r.","questionPicture":"","correct":0,"answers":["\u00d6karyot","Prokaryot","Tek h\u00fccreli","\u00c7ok h\u00fccreli"]},{"question":"Kendi besinini kendisi \u00fcreten canl\u0131lard\u0131r.","questionPicture":"","correct":0,"answers":["Ototrof","Heterotrof","Prokaryot","\u00d6karyot"]},{"question":"Besinini d\u0131\u015fardan haz\u0131r alan canl\u0131lard\u0131r.","questionPicture":"","correct":0,"answers":["Heterotrof","Ototrof","Fotoototrof","Kemoototrof"]},{"question":"Solunum ne \u00fcretmek i\u00e7in yap\u0131l\u0131r?","questionPicture":"","correct":0,"answers":["Enerji (ATP)","Karbondioksit (CO2)","Oksijen (O2)","Su (H2O)"]},{"question":"T\u00fcm canl\u0131lar beslenme ve solunum olaylar\u0131 sonucunda olu\u015fan s\u0131v\u0131 ya da kat\u0131 at\u0131k maddeleri v\u00fccutlar\u0131ndan atmak zorundad\u0131r.","questionPicture":"","correct":0,"answers":["Bo\u015falt\u0131m","Sindirim","Solunum","\u00dcreme"]},{"question":"Bitkiler, mantarlar, s\u00fcnger gibi canl\u0131larda haraket nas\u0131l ger\u00e7ekle\u015fir?","questionPicture":"","correct":0,"answers":["Pasif (Y\u00f6nelme)","Aktif","Yar\u0131 aktif","Yar\u0131 pasif"]},{"question":"\u00c7evre \u015fartlar\u0131 de\u011fi\u015fken olan canl\u0131ya gelen etki, tepki \u015feklinde kar\u015f\u0131l\u0131k bulur.","questionPicture":"","correct":0,"answers":["Uyar\u0131lara tepki verme","Uyum","Organizasyon","Haraket"]},{"question":"\u00d6glena n\u0131n \u0131\u015f\u0131\u011f\u0131n oldu\u011fu yere haraket etmesi neyin g\u00f6stergesidir?","questionPicture":"","correct":0,"answers":["Uyar\u0131lara tepki verme","Uyum","Adaptasyon","Mutasyon"]},{"question":"Kutupta ya\u015fayan hayvanlar\u0131n a\u00e7\u0131k renkli olmas\u0131 neyin g\u00f6stergesidir?","questionPicture":"","correct":0,"answers":["Uyum","Uyar\u0131lara tepki verme","Organizasyon","Beslenme"]},{"question":"Canl\u0131lar hangi \u00f6zellikleri ile soylar\u0131n\u0131 devam ettirir?","questionPicture":"","correct":0,"answers":["\u00dcreme","Beslenme","Solunum","Haraket"]},{"question":"Ata canl\u0131yla ayn\u0131 kal\u0131tsal yap\u0131da canl\u0131lar olu\u015fur.","questionPicture":"","correct":0,"answers":["E\u015feysiz","E\u015feyli","Hem e\u015feyli hem de e\u015feysiz","Hi\u00e7biri"]},{"question":"H\u00fccreler bir araya gelerek dokular\u0131, dokular organlar\u0131, organlar sistemleri, sistemler ise neyi olu\u015fturur?","questionPicture":"","correct":0,"answers":["Organizma","Beyin","Ba\u011f\u0131rsak","Organ"]},{"question":"Hacim ve k\u00fctlenin veya hacim k\u00fctle ve h\u00fccre say\u0131s\u0131n\u0131n artmas\u0131yla ne ger\u00e7ekle\u015fir?","questionPicture":"","correct":0,"answers":["B\u00fcy\u00fcme","Geli\u015fme","K\u00fc\u00e7\u00fclme","Hi\u00e7biri"]},{"question":"H\u00fccre b\u00f6l\u00fcnmesi, b\u00fcy\u00fcme, farkl\u0131la\u015fma, doku ve organlar\u0131n olu\u015fumunu sa\u011flayan ve ergin canl\u0131n\u0131n olu\u015fmas\u0131yla sonu\u00e7lanan bir s\u00fcre\u00e7tir.","questionPicture":"","correct":0,"answers":["Geli\u015fme","B\u00fcy\u00fcme","K\u00fc\u00e7\u00fclme","Ergenlik"]},{"question":"T\u00fcm canl\u0131l\u0131k olaylar\u0131na denir.","questionPicture":"","correct":0,"answers":["Metabolizma","Anabolizma","Katabolizma","Bolizma"]},{"question":"Metabolizmada yap\u0131m ya da \u00f6z\u00fcmleme tepkimesidir.","questionPicture":"","correct":0,"answers":["Anabolizma","Katabolizma","Bolizma","Bazal Metabolizma"]},{"question":"Metabolizmada y\u0131k\u0131m ya da yad\u0131mlama tepkimesidir.","questionPicture":"","correct":0,"answers":["Katabolizma","Anabolizma","Bolizma","Bazal Metabolizma"]},{"question":"Bir canl\u0131n\u0131n hayatta kalmas\u0131 i\u00e7in gereken en az enerji miktar\u0131 ve aktiviteye denir.","questionPicture":"","correct":0,"answers":["Bazal Metabolizma","Metabolizma","Anabolizma","Katabolizma"]},{"question":"Canl\u0131lar\u0131n v\u00fccut i\u00e7i de\u011ferlerini belirli s\u0131n\u0131rlar i\u00e7inde tutma e\u011filimine denir.","questionPicture":"","correct":0,"answers":["Homeostasi","\u0130\u00e7 denge","Metabolizma","D\u0131\u015f denge"]},{"question":"A\u015fa\u011f\u0131dakilerden hangisi inorganik bir bile\u015fik de\u011fildir?","questionPicture":"","correct":0,"answers":["Proteinler","Su","Asitler, bazlar, tuzlar","Mineraller"]},{"question":"A\u015fa\u011f\u0131dakilerden hangisi hem yap\u0131c\u0131 ve onar\u0131c\u0131 hem de d\u00fczenleyici bir bile\u015fik de\u011fildir?","questionPicture":"","correct":0,"answers":["Vitaminler","Proteinler","Mineraller","Su"]},{"question":"A\u015fa\u011f\u0131dakilerden hangisi enerji vermez?","questionPicture":"","correct":0,"answers":["Mineraller","Proteinler","Karbonhidratlar","Ya\u011flar"]},{"question":"Canl\u0131lar\u0131n v\u00fccutlar\u0131nda sentezlenemez ve d\u0131\u015far\u0131dan haz\u0131r olarak al\u0131n\u0131rlar.","questionPicture":"","correct":0,"answers":["\u0130norganik bile\u015fikler","Organik bile\u015fikler","D\u00fczenleyici bile\u015fikler","Yap\u0131c\u0131 onar\u0131c\u0131 bile\u015fikler"]},{"question":"Sindirime u\u011framadan h\u00fccre zar\u0131ndan ge\u00e7ebilirler ve enerji elde etmek amac\u0131yla kullan\u0131lmazlar.","questionPicture":"","correct":0,"answers":["\u0130norganik bile\u015fikler","Organik bile\u015fikler","Yap\u0131c\u0131 ve onar\u0131c\u0131 bile\u015fikler","D\u00fczenleyici bile\u015fikler"]},{"question":"O2 ve H atomlar\u0131n\u0131n birbirlerine kovalent ba\u011f ile ba\u011flanmas\u0131yla olu\u015furlar.","questionPicture":"","correct":0,"answers":["Su","Hidrojen","Oksijen","Helyum"]},{"question":"Oksijenin oldu\u011fu taraf negatif y\u00fckl\u00fc, hidrojenin bulundu\u011fu taraf pozitif y\u00fckl\u00fcd\u00fcr. Suyun bu \u00f6zelli\u011finin ad\u0131 nedir?","questionPicture":"","correct":0,"answers":["Polarizasyon","Kohezyon","Adhezyon","Y\u00fczey gerilimi"]},{"question":"Suyun molek\u00fclleri birbirlerine hangi ba\u011flar ile ba\u011fl\u0131d\u0131r?","questionPicture":"","correct":0,"answers":["Hidrojen ba\u011flar\u0131","Oksijen ba\u011flar\u0131","Ankara n\u0131n ba\u011flar\u0131 :)","Glikozit ba\u011flar\u0131"]},{"question":"Molek\u00fcllerin kopmadan bir arada kalmas\u0131na denir.","questionPicture":"","correct":0,"answers":["Kohezyon","Adhezyon","Polarizasyon","Y\u00fczey gerilimi"]},{"question":"Suyun bulundu\u011fu y\u00fczeye tutunma kuvvetine denir.","questionPicture":"","correct":0,"answers":["Adhezyon","Kohezyon","Y\u00fczey gerilimi","Polarizasyon"]},{"question":"Bir s\u0131v\u0131n\u0131n y\u00fczeyinin elastik bir tabaka gibi davranmas\u0131n\u0131 sa\u011flayan \u00f6zelliktir.","questionPicture":"","correct":0,"answers":["Y\u00fczey gerilimi","Adhezyon","Kohezyon","Polerizasyon"]},{"question":"Suyun hangi \u00f6zelli\u011fi ortam s\u0131cakl\u0131\u011f\u0131n\u0131n dengede kalmas\u0131nda ve korunmas\u0131nda rol oynar?","questionPicture":"","correct":0,"answers":["\u00d6z \u0131s\u0131s\u0131n\u0131n y\u00fcksek olmas\u0131","\u0130yi bir \u00e7\u00f6z\u00fcc\u00fc olmas\u0131","D\u00fczenleyici olmas\u0131","Par\u00e7alay\u0131c\u0131 olmas\u0131"]},{"question":"Suda \u00e7\u00f6z\u00fcnd\u00fcklerinde H+ iyonu verirler.","questionPicture":"","correct":0,"answers":["Asit","Tuz","Baz","Kar\u0131\u015f\u0131m"]},{"question":"Tatlar\u0131 ac\u0131d\u0131r ve ele kayganl\u0131k hissi verirler.","questionPicture":"","correct":0,"answers":["Baz","Asit","Tuz","Su"]},{"question":"pH lar\u0131 0-7 aras\u0131ndad\u0131r.","questionPicture":"","correct":0,"answers":["Asit","Baz","Tuz","Su"]},{"question":"K\u0131rm\u0131z\u0131 turnusol ka\u011f\u0131d\u0131n\u0131 maviye d\u00f6n\u00fc\u015ft\u00fcr\u00fcrler.","questionPicture":"","correct":0,"answers":["Baz","Kar\u0131\u015f\u0131m","Tuz","Asit"]},{"question":"Asitler ile bazlar kar\u0131\u015ft\u0131r\u0131ld\u0131\u011f\u0131nda ne olu\u015fur?","questionPicture":"","correct":0,"answers":["Tuz ve su","Su ve baz","Hidrojen ve Oksijen","Tuz ve asit"]},{"question":"Canl\u0131lar\u0131n pH de\u011ferlerinin sabit kalmas\u0131n\u0131 sa\u011flayan \u00e7e\u015fitli mekanizmalar vard\u0131r. A\u015fa\u011f\u0131dakilerden hangisi buna bir \u00f6rnektir?","questionPicture":"","correct":0,"answers":["Tampon","Egzoz","Karb\u00fcrat\u00f6r","Distrib\u00fct\u00f6r"]},{"question":"V\u00fccudun sa\u011fl\u0131kl\u0131 yap\u0131s\u0131n\u0131n korunmas\u0131 i\u00e7in gerekli olan, canl\u0131lar\u0131n yap\u0131lar\u0131nda sentezleyemedi\u011fi, d\u0131\u015far\u0131dan su ve besinlerle almak zorunda oldu\u011fu inorganik maddelerdir.","questionPicture":"","correct":0,"answers":["Mineraller","Tuzlar","Vitaminler","Proteinler"]},{"question":"A\u015fa\u011f\u0131dakilerden hangisi s\u00fcrekli al\u0131nmas\u0131 gereken minerallerden de\u011fildir?","questionPicture":"","correct":0,"answers":["Fe","Ca","Na","K"]},{"question":"Canl\u0131 h\u00fccrelerin sentezledi\u011fi ve kulland\u0131\u011f\u0131 bile\u015fiklerdir.","questionPicture":"","correct":0,"answers":["Organik","\u0130norganik","Yap\u0131c\u0131 ve onar\u0131c\u0131","D\u00fczenleyici"]},{"question":"Organik bile\u015fenlerin en k\u00fc\u00e7\u00fck yap\u0131 ta\u015flar\u0131na denir.","questionPicture":"","correct":0,"answers":["Monomer","Polimer","Monosakkarit","Polisakkarit"]},{"question":"Organik bile\u015fenlerin b\u00fcy\u00fck molek\u00fcll\u00fc yap\u0131lar\u0131na denir.","questionPicture":"","correct":0,"answers":["Polimer","Monomer","Monosakkarit","Polisakkarit"]},{"question":"Monomerlerin birle\u015fmesi sonucu su a\u00e7\u0131\u011fa \u00e7\u0131kt\u0131\u011f\u0131ndan bu tip reaksiyonlara ........ denir.","questionPicture":"","correct":0,"answers":["Dehidrasyon","Hidroliz","Polimer","Karbonhidrat"]},{"question":"Polimerlerin yap\u0131 ta\u015flar\u0131na ayr\u0131lmas\u0131 i\u00e7in su kullan\u0131ld\u0131\u011f\u0131ndan bu tip reaksiyonlara ....... denir.","questionPicture":"","correct":0,"answers":["Hidroliz","Dehidrasyon","Monomer","Polisakkarit"]},{"question":"Monomerler birbirlerine d\u00f6n\u00fc\u015febilirler. Do\u011fru\/Yanl\u0131\u015f ?","questionPicture":"","correct":0,"answers":["Do\u011fru","Yanl\u0131\u015f","Hi\u00e7bir fikrim yok","Bilemiyorum"]},{"question":"A\u015fa\u011f\u0131dakilerden hangisi karbonhidratlar\u0131n yap\u0131s\u0131nda bulunmaz?","questionPicture":"","correct":0,"answers":["K","C","H","O"]},{"question":"Karbonhidratlar\u0131n genel form\u00fcl\u00fc nedir?","questionPicture":"","correct":0,"answers":["CH2O","C2HO","CHO2","CHO"]},{"question":"Karbonhidratlar\u0131n en k\u00fc\u00e7\u00fck birimidir. Daha k\u00fc\u00e7\u00fck molek\u00fcllere par\u00e7alanamazlar ve h\u00fccre zar\u0131ndan kolayl\u0131kla ge\u00e7ebilirler.","questionPicture":"","correct":0,"answers":["Monosakkaritler","Disakkaritler","Trisakkaritler","Polisakkaritler"]},{"question":"\u0130ki monosakkaritin glikozit ba\u011f\u0131 ile birle\u015fmesiyle meydana gelirler. Hidroliz olmadan h\u00fccre zar\u0131ndan ge\u00e7emezler. Suda \u00e7\u00f6z\u00fcn\u00fcrler.","questionPicture":"","correct":0,"answers":["Disakkaritler","Monosakkaritler","Trisakkaritler","Polisakkaritler"]},{"question":"A\u015fa\u011f\u0131dakilerden hangisi yanl\u0131\u015ft\u0131r?","questionPicture":"","correct":0,"answers":["Glikoz + S\u00fckroz = Maltoz","Glikoz + Glikoz = Maltoz","Glikoz + Fruktoz = S\u00fckroz","Glikoz + Galaktoz = Laktoz"]},{"question":"\u00c7ok say\u0131da glikozun birle\u015fmesinden olu\u015fan b\u00fcy\u00fck molek\u00fcll\u00fc karbonhidrat \u00e7e\u015fitleridir.","questionPicture":"","correct":0,"answers":["Polisakkaritler","Disakkaritler","Monosakkaritler","Pentasakkaritler"]},{"question":"Bitkilerde \u00fcretilen glikozun fazlas\u0131n\u0131n depo \u015feklidir.","questionPicture":"","correct":0,"answers":["Ni\u015fasta","Glikojen","Sel\u00fcloz","Kitin"]},{"question":"Hayvan, bakteri ve mantarlarda glikozun fazlas\u0131n\u0131n depo \u015feklidir.","questionPicture":"","correct":0,"answers":["Glikojen","Kitin","Sel\u00fcloz","Ni\u015fasta"]},{"question":"Bitkilerin h\u00fccre \u00e7eperini olu\u015fturan yap\u0131sal bir polisakkarittir.","questionPicture":"","correct":0,"answers":["Sel\u00fcloz","Kitin","Glikojen","Ni\u015fasta"]},{"question":"B\u00f6cek, \u00f6r\u00fcmcek ve kabuklular gibi eklem bacakl\u0131larda d\u0131\u015f iskeletin (kabu\u011fun) ve mantarlar\u0131n h\u00fccre \u00e7eperinin yap\u0131s\u0131na kat\u0131l\u0131rlar.","questionPicture":"","correct":0,"answers":["Kitin","Heparin","Ni\u015fasta","Sel\u00fcloz"]},{"question":"Kan\u0131n damar i\u00e7inde p\u0131ht\u0131la\u015fmas\u0131n\u0131 \u00f6nleyen bir polisakkarittir.","questionPicture":"","correct":0,"answers":["Heparin","Adenin","Kitin","Glikojen"]},{"question":"Lipitlerin yap\u0131s\u0131nda a\u015fa\u011f\u0131dakilerden hangisi bulunmaz?","questionPicture":"","correct":0,"answers":["K","N","P","C"]},{"question":"Ya\u011fda eriyen vitaminler a\u015fa\u011f\u0131dakilerin hangisinde do\u011fru olarak verilmi\u015fti?","questionPicture":"","correct":0,"answers":["ADEK","ABCD","ACED","BCDK"]},{"question":"\u0130nsan, hayvan ve bitkilerde depo edilen lipit \u00e7e\u015fididir.","questionPicture":"","correct":0,"answers":["N\u00f6trol Ya\u011flar (Trigliserit)","Fosfolipidler","Steroidler","Mumlar"]},{"question":"N\u00f6tral ya\u011flar\u0131n olu\u015fumunda bir gliserol ile \u00fc\u00e7 ya\u011f asidi birle\u015fmesinde hangi ba\u011f ortaya \u00e7\u0131kar?","questionPicture":"","correct":0,"answers":["Ester ba\u011f\u0131","Glikozit ba\u011f\u0131","Peptit ba\u011f\u0131","Hidrojen ba\u011f\u0131"]},{"question":"Ya\u011f asidinin C zincirinde, C lar aras\u0131nda \u00e7ift ba\u011f yok ve b\u00fct\u00fcn C lar H ile doymu\u015f ya\u011f asitlerine ne ad verilir?","questionPicture":"","correct":0,"answers":["Doymu\u015f ya\u011f asitleri","Trans ya\u011f","Doymam\u0131\u015f ya\u011f","Esansiyel ya\u011f"]},{"question":"Ya\u011f asidini olu\u015fturan C zincirinde, C lar aras\u0131nda \u00e7ift ba\u011f var ve C lar H alabilecek durumda olan ya\u011f asitlerine ne ad verilir?","questionPicture":"","correct":0,"answers":["Doymam\u0131\u015f Ya\u011f Asitleri","Doymu\u015f Ya\u011f Asitleri","Margarin","Temel Ya\u011f Asitleri"]},{"question":"Doymam\u0131\u015f ya\u011flar\u0131n \u00e7ift ba\u011flar\u0131 k\u0131r\u0131larak H ile doyurulursa zorla kat\u0131la\u015ft\u0131r\u0131lm\u0131\u015f olur ve ne olu\u015fur?","questionPicture":"","correct":0,"answers":["Margarin (Trans Ya\u011f)","Doymam\u0131\u015f Ya\u011f","Esansiyel Ya\u011f","Fosfolipidler"]},{"question":"Gliserole iki ya\u011f asidi ve azotlu bir fosfat grubunun eklenmesiyle olu\u015fur.","questionPicture":"","correct":0,"answers":["Fosfolipidler","N\u00f6tral Ya\u011flar","Steroidler","Mumlar"]},{"question":"Fosfolipitlerin suyu seven ba\u015f k\u0131s\u0131mlar\u0131na ne ad verilir?","questionPicture":"","correct":0,"answers":["Hidrofilik","Hidrofobik","Hidrosfer","Hidrohobik"]},{"question":"Birbiriyle kayna\u015fm\u0131\u015f, d\u00f6rt halka i\u00e7eren C iskeletine sahip lipidlerdir.","questionPicture":"","correct":0,"answers":["Steroidler","Fosfolipidler","Mumlar","N\u00f6tral Ya\u011flar"]},{"question":"Baz\u0131 bitkilerden salg\u0131lan\u0131r. Uzun zincirli bir alkol ile bir ya\u011f asidinden olu\u015fur.","questionPicture":"","correct":0,"answers":["Mumlar","Fosfolipidler","Steroidler","Trans Ya\u011flar"]},{"question":"Canl\u0131 v\u00fccudunda sudan sonra en \u00e7ok bulunan maddedir.","questionPicture":"","correct":0,"answers":["Protein","Su","Karbonhidrat","Ya\u011f"]},{"question":"Proteinlerin yap\u0131s\u0131nda a\u015fa\u011f\u0131daki elementlerden hangisi bulunmaz?","questionPicture":"","correct":0,"answers":["He","S","P","N"]},{"question":"Proteinler ........ ad\u0131 verilen monomerlerden olu\u015fur.","questionPicture":"","correct":0,"answers":["Aminoasit","Karboksil","Hidrojen","Karbon"]},{"question":"20 \u00e7e\u015fit aminoasitin ka\u00e7 tanesi esansiyel (zorunlu\/temel) aminoasittir?","questionPicture":"","correct":0,"answers":["8","12","6","14"]},{"question":"A\u015fa\u011f\u0131daki e\u015fle\u015ftirmelerden hangisi yanl\u0131\u015ft\u0131r?","questionPicture":"","correct":0,"answers":["Amino Grubu - NH3","Karboksil Grubu - COOH","Radikal Grubu - R","Hidrojen Grubu - H"]},{"question":"\u0130ki aa birbirine ..... ba\u011f\u0131 ile ba\u011flan\u0131r. Olu\u015fan 2 aa li yap\u0131ya .... denir.","questionPicture":"","correct":0,"answers":["peptit-dipeptit","peptit-polipeptit","ester-diester","glikozit-diglikozit"]},{"question":"Proteinlerin farkl\u0131 olmas\u0131, aminoasitlerin a\u015fa\u011f\u0131daki farkl\u0131l\u0131klar\u0131ndan hangisi ile alakas\u0131zd\u0131r?","questionPicture":"","correct":0,"answers":["ismi","say\u0131","s\u0131ra\/dizili\u015f","\u00e7e\u015fidi"]},{"question":"Proteinler kendilerine \u00f6zg\u00fc aa lerinden olu\u015fan d\u00fcz zincir \u015feklindeki yap\u0131lar\u0131a denir.","questionPicture":"","correct":0,"answers":["Primer (Birincil)","Sekonder (\u0130kincil)","Tersiyer (\u00dc\u00e7\u00fcnc\u00fcl)","Kuaterner (D\u00f6rd\u00fcnc\u00fcl)"]},{"question":"Eter, kloroform gibi \u00e7\u00f6z\u00fcc\u00fcler, bas\u0131n\u00e7, s\u0131cakl\u0131k, pH, tuz deri\u015fimi gibi ko\u015fullar ile radyasyon gibi fakt\u00f6rler proteinlerin yap\u0131s\u0131n\u0131n bozulmas\u0131na denir.","questionPicture":"","correct":0,"answers":["Denaturasyon","Renaturasyon","Deaminasyon","Kuaterner Yap\u0131"]},{"question":"E\u011fer proteinlere etki hafif ise proteinler eski haline d\u00f6nebilir. Bu olaya ne ad verilir?","questionPicture":"","correct":0,"answers":["Renaturasyon","Denaturasyon","Deaminasyon","Tersiyer Yap\u0131"]},{"question":"Aminoasitlerin ba\u015fka organik bile\u015fiklere d\u00f6n\u00fc\u015ft\u00fcr\u00fclmesine denir.","questionPicture":"","correct":0,"answers":["Deaminasyon","Denaturasyon","Renaturasyon","Reaminasyon"]},{"question":"\u00c7e\u015fitli maddeleri tan\u0131mak i\u00e7in kullan\u0131lan maddelere denir.","questionPicture":"","correct":0,"answers":["Ay\u0131ra\u00e7","Enzim","Ata\u015f","Antikor"]},{"question":"Kimyasal bir tepkimenin ba\u015flamas\u0131 i\u00e7in gerekli olan en d\u00fc\u015f\u00fck enerji miktar\u0131na denir.","questionPicture":"","correct":0,"answers":["Aktivasyon Enerjisi","Kataliz\u00f6r","Enzim","Kofakt\u00f6r"]},{"question":"Aktivasyon enerjisini d\u00fc\u015f\u00fcren, reaksiyonu h\u0131zland\u0131ran ve reaksiyondan de\u011fi\u015fmeden \u00e7\u0131kan maddelere denir.","questionPicture":"","correct":0,"answers":["Kataliz\u00f6r","Aktivasyon enerjisi","Apoenzim","Koenzim"]},{"question":"Canl\u0131 h\u00fccrelerde kullan\u0131lan biyolojik kataliz\u00f6rlere denir.","questionPicture":"","correct":0,"answers":["Enzim","Poloenzim","Aktivasyon enerjisi","Kofakt\u00f6r"]},{"question":"Bile\u015fik enzimlerde proteinden olu\u015fan k\u0131sma denir.","questionPicture":"","correct":0,"answers":["Apoenzim","Poloenzim","Koenzim","Kofakt\u00f6r"]},{"question":"Yard\u0131mc\u0131 k\u0131s\u0131m vitaminler gibi organik maddelerden olu\u015fuyor ise buna ne ad verilir?","questionPicture":"","correct":0,"answers":["Koenzim","Kofakt\u00f6r","Apoenzim","Poloenzim"]},{"question":"Bile\u015fik enzimlerde yard\u0131mc\u0131 k\u0131s\u0131m mineraller gibi inorganik maddelerden olu\u015fuyorsa ne ad verilir?","questionPicture":"","correct":0,"answers":["Kofakt\u00f6r","Poloenzim","Apoenzim","Koenzim"]},{"question":"Bile\u015fik enzimlerde apoenzim ile yard\u0131mc\u0131 k\u0131sm\u0131 koenzim ya da kofakt\u00f6r\u00fc birlikte olu\u015fturdu\u011fu aktif yap\u0131ya bile\u015fik enzim anlam\u0131na gelen ........ denir.","questionPicture":"","correct":0,"answers":["Poloenzim","Koenzim","Kofakt\u00f6r","Apoenzim"]},{"question":"Enzimin etki etti\u011fi maddeye denir.","questionPicture":"","correct":0,"answers":["Substrat","Aktif b\u00f6lge","Kompleksi","\u00dcr\u00fcn"]},{"question":"Enzimin substrata ba\u011fland\u0131\u011f\u0131 noktaya denir.","questionPicture":"","correct":0,"answers":["Aktif b\u00f6lge","Kompleksi","\u00dcr\u00fcn","Tersinir"]},{"question":"Aktif enzimler substrat\u0131n sonuna hangi ek getirilerek adland\u0131r\u0131l\u0131r.","questionPicture":"","correct":0,"answers":["-az","-\u00e7ok","-ko","-bol"]},{"question":"Enzimin en iyi \u00e7al\u0131\u015fabildi\u011fi s\u0131cakl\u0131\u011fa denir.","questionPicture":"","correct":0,"answers":["Optimum S\u0131cakl\u0131k","Optimus S\u0131cakl\u0131k","Minimum S\u0131cakl\u0131k","Megamum S\u0131cakl\u0131k"]},{"question":"Enzimlerin etkinli\u011fini art\u0131ran maddelere denir.","questionPicture":"","correct":0,"answers":["Aktivat\u00f6r","\u0130nhibit\u00f6r","Pasifit\u00f6r","Feed-back"]},{"question":"Enzimlerin etkinli\u011fini yava\u015flatan veya engelleyen maddelere denir.","questionPicture":"","correct":0,"answers":["\u0130nhibit\u00f6r","Aktivat\u00f6r","Pasifit\u00f6r","Feed-back"]},{"question":"Tak\u0131m halinde \u00e7al\u0131\u015fan enzimlerin aktiviteleri nas\u0131l denetlenir?","questionPicture":"","correct":0,"answers":["Feed-back mekanizmas\u0131 ile","Tree-back mekanizmas\u0131 ile","True-back mekanizmas\u0131 ile","False-back mekanizmas\u0131 ile"]},{"question":"Vitaminlerin yap\u0131s\u0131nda a\u015fa\u011f\u0131daki elementlerden hangisi yoktur?","questionPicture":"","correct":0,"answers":["P","O","N","H"]},{"question":"A vitamini eksikli\u011fi a\u015fa\u011f\u0131daki hastal\u0131klardan hangisine yol a\u00e7ar?","questionPicture":"","correct":0,"answers":["Gece k\u00f6rl\u00fc\u011f\u00fc","Ra\u015fitizm","Anemi","Hemofili"]},{"question":"B vitamini eksikli\u011fi a\u015fa\u011f\u0131daki hastal\u0131klardan hangisine yol a\u00e7ar?","questionPicture":"","correct":0,"answers":["Anemi","Ra\u015fitizm","Hemofili","K\u0131s\u0131rl\u0131k"]},{"question":"K vitamini eksikli\u011fi a\u015fa\u011f\u0131daki hastal\u0131klardan hangisine yol a\u00e7ar?","questionPicture":"","correct":0,"answers":["Hemofili","Skorb\u00fct","Anemi","K\u0131s\u0131rl\u0131k"]},{"question":"\u0130nsan ve hayvanlarda i\u00e7 salg\u0131 bezleri taraf\u0131ndan salg\u0131lanan ve kan yoluyla hedef organa ta\u015f\u0131nan d\u00fczenleyici molek\u00fcllerdir.","questionPicture":"","correct":0,"answers":["Hormonlar","Vitaminler","Proteinler","N\u00fckleik asitler"]},{"question":"H\u00fccreler taraf\u0131ndan sentezlenen yap\u0131lar\u0131nda C,H,O,N,P bulunduran olduk\u00e7a b\u00fcy\u00fck ve karma\u015f\u0131k yap\u0131l\u0131 molek\u00fcllerdir.","questionPicture":"","correct":0,"answers":["N\u00fckleik asitler","Hormonlar","Proteinler","Mineraller"]},{"question":"N\u00fckleosite ester ba\u011f\u0131 ile bir fosfat grubunun ba\u011flanmas\u0131yla ne olu\u015fur?","questionPicture":"","correct":0,"answers":["N\u00fckleotid","N\u00fckleosit","N\u00fckleik asitler","Bazlar"]},{"question":"\u00c7ok say\u0131daki n\u00fckleotidin birbirlerine fosfodiester ba\u011flar\u0131yla ba\u011flanmas\u0131yla ne olu\u015fur?","questionPicture":"","correct":0,"answers":["N\u00fckleik asitler","N\u00fckleosit","P\u00fcrin bazlar\u0131","Pirimidin bazlar\u0131"]},{"question":"A\u015fa\u011f\u0131dakilerden hangisi pirimidin bazlar\u0131ndan de\u011fildir?","questionPicture":"","correct":0,"answers":["Guanin","Sitozin","Timin","Urasil"]},{"question":"RNA daki \u015feker ...... , DNA daki \u015feker .....dur.","questionPicture":"","correct":0,"answers":["Riboz\/Deoksiriboz","Baz\/Deoksiribaz","Asit\/Deoksiriasit","Riboz\/Deoksiriasit"]},{"question":"DNA daki e\u015fle\u015fmeler esnas\u0131nda adeninle timin aras\u0131nda ... , guaninle sitozin aras\u0131nda .... hidrojen ba\u011f\u0131 bulunur.","questionPicture":"","correct":0,"answers":["2\/3","3\/2","2\/4","1\/2"]},{"question":"DNA n\u0131n e\u015flenmesine denir.","questionPicture":"","correct":0,"answers":["Replikasyon","E\u015flenme","Kodon","Copylasyon"]},{"question":"A\u015fa\u011f\u0131daki bazlardan hangisi RNA ya ait de\u011fildir?","questionPicture":"","correct":0,"answers":["T","A","G","U"]},{"question":"mRNA n\u0131n\u00fczerindeki 3 l\u00fc n\u00fckleotid gruplar\u0131na denir.","questionPicture":"","correct":0,"answers":["Kodon","Anti-kodon","tRNA","rRNA"]},{"question":"tRNA n\u0131n \u00fczerinde bulunan ve mRNA daki kodonlara uygunluk g\u00f6steren \u00fc\u00e7l\u00fc n\u00fckleotid gruplar\u0131na denir.","questionPicture":"","correct":0,"answers":["Anti-kodon","Kodon","mRNA","rRNA"]},{"question":"RNA sentzinde g\u00f6rev alan enzim RNA..... , RNA hidrolizinde g\u00f6rev alan enzim RNA....d\u0131r.","questionPicture":"","correct":0,"answers":["polimeraz\/az","az\/polimeraz","\u00e7ok\/polimer\u00e7ok","polimer\u00e7ok\/\u00e7ok"]},{"question":"Canl\u0131l\u0131k faaliyetleri i\u00e7in gerekli olan enerji genelde hangi molek\u00fclden sa\u011flan\u0131r?","questionPicture":"","correct":0,"answers":["ATP","DNA","RNA","Adenozin"]},{"question":"ATP de adenin ile ribozun ba\u011flanmas\u0131nda ne olu\u015fur?","questionPicture":"","correct":0,"answers":["Adenozin","Y\u00fcksek enerjili fosfat ba\u011flar\u0131","Fosforilasyon","ATP"]},{"question":"ATP nin yap\u0131s\u0131nda iki tane ....... bulunur.","questionPicture":"","correct":0,"answers":["Y\u00fcksek enerjili fosfat ba\u011flar\u0131","Glikozit ba\u011f\u0131","Ester ba\u011f\u0131","Adenozin"]},{"question":"ATP nin \u00fcretildi\u011fi reaksiyonlara ...... , harcand\u0131\u011f\u0131 reaksiyonlara ise ..... denir.","questionPicture":"","correct":0,"answers":["Fosforilasyon\/Defosforilasyon","Fosfatilasyon\/Defosfatilasyon","Potasyumilasyon\/Depotasyumilasyon","Magnezyumilasyon\/Demagnezyumilasyon"]},{"question":"ATP nin sentezi enerji alan ...... , hidroliji ise enerji veren ..... dir.","questionPicture":"","correct":0,"answers":["Endergonik\/ekzergonik","Ekzergonik\/endergonik","Fosforilasyon\/defosforilasyon","Defosforilasyon\/fosforilasyon"]},{"question":"ATP; fotosentez, kemosentez ve ....... reaksiyonlar\u0131 ile \u00fcretilir.","questionPicture":"","correct":0,"answers":["Solunum","Bo\u015falt\u0131m","Sindirim","Beslenme"]},{"question":"\u0130ngiliz bilim insan\u0131 Robert Hooke 1665 y\u0131l\u0131nda inceledi\u011fi \u00f6l\u00fc mantar dokusunda i\u00e7i bo\u015f odac\u0131klar g\u00f6rm\u00fc\u015f ve bunlara ne ad vermi\u015ftir?","questionPicture":"","correct":0,"answers":["H\u00fccre (cellula)","Atom","Doku","Organ"]},{"question":"T\u00fcm metabolik olaylar nerede ger\u00e7ekle\u015fir?","questionPicture":"","correct":0,"answers":["H\u00fccrede","Atomda","\u00c7ekirdekte","K\u0131k\u0131rdakta"]},{"question":"A\u015fa\u011f\u0131dakilerden hangisinin yap\u0131s\u0131nda h\u00fccre \u00e7eperi kesinlikle bulunmaz?","questionPicture":"","correct":0,"answers":["Protista","Alg","Mantar","Bitki"]},{"question":"H\u00fccre zar\u0131n\u0131n d\u0131\u015f\u0131nda bulunan cans\u0131z \u00f6rt\u00fcd\u00fcr.","questionPicture":"","correct":0,"answers":["H\u00fccre \u00e7eperi","H\u00fccre zar\u0131","Sitoplazma","\u00c7ekirdek"]},{"question":"H\u00fccrede ince, esnek, saydam ve canl\u0131 olarak bulunan yap\u0131d\u0131r.","questionPicture":"","correct":0,"answers":["H\u00fccre zar\u0131","H\u00fccre duvar\u0131","Sitoplazma","Endoplazmik Retikulum"]},{"question":"S. J. Singer ve G. Nicholson taraf\u0131ndan 1972 y\u0131l\u0131nda olu\u015fturulan haraketli yap\u0131da olan modele denir.","questionPicture":"","correct":0,"answers":["Ak\u0131c\u0131 mozaik zar","Donuk mozaik zar","Mozaik kek modeli","\u00dcz\u00fcml\u00fc kek modeli"]},{"question":"\u0130\u00e7 proteinlerin \u00e7o\u011fu, zar\u0131n iki yan\u0131nda a\u00e7\u0131k k\u0131s\u0131mlar bulunucak bi\u00e7imde lipit tabakalar aras\u0131nda kanallar olu\u015fturur. Bu proteinlere ne ad verilir?","questionPicture":"","correct":0,"answers":["Por","Glikoprotein","Aminoasit","Glikolipit"]},{"question":"H\u00fccre zar\u0131n\u0131n yap\u0131s\u0131nda bulunan karbonhidratlar proteinlere ba\u011flanarak ne olu\u015fturur?","questionPicture":"","correct":0,"answers":["Glikoproteinleri","Glikolipitleri","Lipoproteinleri","Glikokaliks"]},{"question":"H\u00fccre zar\u0131n\u0131n yap\u0131s\u0131nda bulunan karbonhidratlar lipitlere ba\u011flanarak ne olu\u015fturur?","questionPicture":"","correct":0,"answers":["Glikolipitleri","Poreini","Glikokaliksi","Lipoproteinleri"]},{"question":"Glikoproteinlere, glikolipitlere ve lipoproteinlere hepsine birden ne ad verilir?","questionPicture":"","correct":0,"answers":["Glikokaliks","Glikop\u0131rlip\u0131r","Glikokakao","Glikoasit"]},{"question":"Molek\u00fcllerin h\u00fccre zar\u0131ndaki da\u011f\u0131l\u0131mlar\u0131 ve miktarlar\u0131 h\u00fccrelerin neye sahip olmalar\u0131n\u0131 sa\u011flar?","questionPicture":"","correct":0,"answers":["\u00d6zg\u00fcll\u00fck","\u00d6zg\u00fcrl\u00fck","\u00d6zg\u00fcnl\u00fck","\u00d6zl\u00fcl\u00fck"]},{"question":"Hayvan h\u00fccrelerinde plazma zar\u0131ndaki fosfolipitlerin aras\u0131nda steroit yap\u0131da bulunan molek\u00fcld\u00fcr.","questionPicture":"","correct":0,"answers":["Kolesterol","\u015eeker","ATP","Dif\u00fczyon"]},{"question":"H\u00fccre zar\u0131n\u0131n en \u00f6zelli\u011fi a\u015fa\u011f\u0131dakilerden hangisidir?","questionPicture":"","correct":0,"answers":["Se\u00e7ici ge\u00e7irgen olmas\u0131","\u0130nce olmas\u0131","Canl\u0131 olmas\u0131","Saydam olmas\u0131"]},{"question":"Molek\u00fcllerin enerji harcanmadan yo\u011funluk fark\u0131ndan dolay\u0131 h\u00fccre zar\u0131ndan do\u011frudan ge\u00e7mesine denir.","questionPicture":"","correct":0,"answers":["Pasif ta\u015f\u0131ma","Aktif ge\u00e7i\u015f","Dif\u00fczyon","Por"]},{"question":"Molek\u00fcl ya da iyonlar\u0131n \u00e7ok yo\u011fun ortamdan az yo\u011fun ortama kendili\u011finden ge\u00e7mesine denir.","questionPicture":"","correct":0,"answers":["Dif\u00fczyon","Por","Pasif ge\u00e7i\u015f","Aktif ge\u00e7i\u015f"]},{"question":"Suda \u00e7\u00f6z\u00fcnmeyen ve ya\u011fda erimeyen maddelerin h\u00fccre zar\u0131ndan ge\u00e7i\u015fleri zar\u0131n yap\u0131s\u0131nda bulunan ta\u015f\u0131y\u0131c\u0131 proteinlerle ger\u00e7ekle\u015fir. Bu olaya ne ad verilir?","questionPicture":"","correct":0,"answers":["Kolayla\u015ft\u0131r\u0131lm\u0131\u015f dif\u00fczyon","Basit dif\u00fczyon","Pasif ta\u015f\u0131ma","Aktif ge\u00e7i\u015f"]},{"question":"A\u015fa\u011f\u0131daki fakt\u00f6rlerin hangisinde dif\u00fczyon h\u0131z\u0131 azal\u0131r? ","questionPicture":"","correct":0,"answers":["Molek\u00fcl b\u00fcy\u00fckl\u00fc\u011f\u00fc artt\u0131k\u00e7a","Yo\u011funluk fark\u0131 artt\u0131k\u00e7a","Zar\u0131n y\u00fczey geni\u015fli\u011fi artt\u0131k\u00e7a","Zardaki por say\u0131s\u0131 ve b\u00fcy\u00fckl\u00fc\u011f\u00fc artt\u0131k\u00e7a"]},{"question":"Suyun \u00e7ok yo\u011fun ortamda az yo\u011fun ortama do\u011fru yar\u0131 ge\u00e7irgen zardan ge\u00e7mesine denir.","questionPicture":"","correct":0,"answers":["Osmoz","Dif\u00fczyon","Endositoz","Ekzositoz"]},{"question":"Hipertonik ortama konulan h\u00fccrenin su kaybedip b\u00fcz\u00fclmesidir.","questionPicture":"","correct":0,"answers":["Plazmoliz","Deplazmoliz","Turgor","Osmotik bas\u0131n\u00e7"]},{"question":"H\u00fccre i\u00e7indeki suyun h\u00fccre zar\u0131na yapt\u0131\u011f\u0131 bas\u0131nca ne ad verilir?","questionPicture":"","correct":0,"answers":["Turgor","Osmotik bas\u0131n\u00e7","Hemoliz","Plazmoliz"]},{"question":"Hayvan h\u00fccresinde h\u00fccre zar\u0131 turgor bas\u0131nc\u0131na dayanamaz ve h\u00fccre patlar. Bu olaya ne denir?","questionPicture":"","correct":0,"answers":["Hemoliz","Plazmoliz","Deplazmoliz","Osmotik bas\u0131n\u00e7"]},{"question":"Ortamdaki madde miktar\u0131n\u0131n artmas\u0131na ba\u011fl\u0131 olarak ortaya \u00e7\u0131kan su alma iste\u011fine denir.","questionPicture":"","correct":0,"answers":["Osmotik bas\u0131n\u00e7","Turgor bas\u0131nc\u0131","Plazmoliz","Deplazmoliz"]},{"question":"Osmotik bas\u0131n\u00e7 ile turgor bas\u0131nc\u0131 aras\u0131ndaki fark neyi olu\u015fturur?","questionPicture":"","correct":0,"answers":["Emme bas\u0131nc\u0131n\u0131","Turgor bas\u0131nc\u0131n\u0131","Osmotik bas\u0131nc\u0131n\u0131","\u00c7\u00f6zelti bas\u0131nc\u0131n\u0131"]},{"question":"\u00c7\u00f6z\u00fcnm\u00fc\u015f madde molek\u00fcllerinin se\u00e7ici ge\u00e7irgen zardan dif\u00fczyonuna denir.","questionPicture":"","correct":0,"answers":["Diyaliz","Hemoliz","Plazmoliz","Deplazmoliz"]},{"question":"Bir maddenin az oldu\u011fu ortamdan \u00e7ok oldu\u011fu ortama do\u011fru enerji harcanarak ta\u015f\u0131nmas\u0131na denir.","questionPicture":"","correct":0,"answers":["Aktif Ta\u015f\u0131ma","Pasif Ge\u00e7i\u015f","Dif\u00fczyon","Osmoz"]},{"question":"Aktif ta\u015f\u0131ma hangi h\u00fccrelerde ger\u00e7ekle\u015fir?","questionPicture":"","correct":0,"answers":["Canl\u0131","Cans\u0131z","Hem canl\u0131 hem de cans\u0131z","Hi\u00e7bir fikrim yok"]},{"question":"H\u00fccre zar\u0131ndan ge\u00e7emeyecek b\u00fcy\u00fckl\u00fckteki molek\u00fcllerin h\u00fccre i\u00e7ine al\u0131nmas\u0131na denir.","questionPicture":"","correct":0,"answers":["Endositoz","Ekzositoz","Dif\u00fczyon","Turgor"]},{"question":"B\u00fcy\u00fck kat\u0131 molek\u00fcllerin h\u00fccre i\u00e7ine besin kofulu \u015feklinde al\u0131nmas\u0131na denir.","questionPicture":"","correct":0,"answers":["Fagositoz","Pinositoz","Ekzositoz","Osmotik bas\u0131n\u00e7"]},{"question":"B\u00fcy\u00fck s\u0131v\u0131 molek\u00fcllerin h\u00fccreye besin kofulu \u015feklinde al\u0131nmas\u0131na denir.","questionPicture":"","correct":0,"answers":["Pinositoz","Fagositoz","Ekzositoz","Emme bas\u0131nc\u0131"]},{"question":"H\u00fccre i\u00e7i sindirim at\u0131klar\u0131 ya da salg\u0131lanacak maddelerin koful i\u00e7erisine al\u0131n\u0131p paketlenerek h\u00fccre d\u0131\u015f\u0131na at\u0131lmas\u0131na denir.","questionPicture":"","correct":0,"answers":["Ekzositoz","Endositoz (Yanl\u0131\u015f cevap sak\u0131n se\u00e7me)","Fagositoz","Pinositoz"]},{"question":"H\u00fccre zar\u0131 ile \u00e7ekirdek zar\u0131 aras\u0131nda bulunan k\u0131sma denir.","questionPicture":"","correct":0,"answers":["Sitoplazma","Organel","H\u00fccre \u00e7eperi","Ribozom"]},{"question":"Sitoplazma i\u00e7inde belirli g\u00f6revler yapmak \u00fczere \u00f6zelle\u015fmi\u015f yap\u0131lara denir.","questionPicture":"","correct":0,"answers":["Organel","Organ","Mafya","Endoplazmik Retikulum"]},{"question":"Protein sentezinde g\u00f6revli olan zars\u0131z organeldir.","questionPicture":"","correct":0,"answers":["Ribozom","Endoplazmik Retikulum","Golgi","Lizozom"]},{"question":"Zarlar\u0131nda ribozom bulunan Endoplazmik Retikulumdur.","questionPicture":"","correct":0,"answers":["Gran\u00fcll\u00fc Endoplazmik Retikulum","Gran\u00fcls\u00fcz Endoplazmik Retikulum","Yav o de\u011filde sen Endoplazmik Retikulum yazmaya \u00fc\u015fenmedin mi?","Ctrl c - ctrl v"]},{"question":"Tek kaztl\u0131 zarla \u00e7evrili disk \u015feklinde \u00fcst \u00fcste dizilmi\u015f yass\u0131 keselerden olu\u015fur. Bir \u00fcretim, depolama, ay\u0131rma ve salg\u0131lama merkezidir.","questionPicture":"","correct":0,"answers":["Golgi Cisimci\u011fi","Endoplazmik Retikulum","Ribozom","Mitokondri"]},{"question":"Sindirim enzimleri i\u00e7eren tek katl\u0131 zarla \u00e7evrili organeldir. H\u00fccre i\u00e7i sindirimde g\u00f6revlidir.","questionPicture":"","correct":0,"answers":["Lizozom","Golgi","Mitokondri","Ribozom"]},{"question":"Memeli alyuvarlar\u0131 hari\u00e7 oksijenli solunum yapan t\u00fcm \u00f6karyot h\u00fccrelerde bulunur. H\u00fccredeki g\u00f6revi enerji \u00fcretmektir.","questionPicture":"","correct":0,"answers":["Mitokondri","Lizozom","Golgi","Kloroplast"]},{"question":"Mitokondride d\u0131\u015f zar d\u00fcz, i\u00e7 zar ise y\u00fczeyi geni\u015fletmek i\u00e7in ...... denen k\u0131vr\u0131mlardan meydana gelir.","questionPicture":"","correct":0,"answers":["Krista","Matrix","Terminator","Plastit"]},{"question":"Mitokondrideki kristalar\u0131n ars\u0131ndaki s\u0131v\u0131ya ne ad verilir?","questionPicture":"","correct":0,"answers":["Matrix","Krista","Co\u011frafya","L\u00f6koplast"]},{"question":"Bitki h\u00fccrelerinde, \u00f6glenada ve alglerde bulunan ve yap\u0131lar\u0131nda \u00e7e\u015fitli pigmentleri bulunduran yap\u0131d\u0131r.","questionPicture":"","correct":0,"answers":["Plastitler","Mitokondri","Lizozom","Golgi"]},{"question":"Kloroplastta bulunan ye\u015fil renkli pigmentin ad\u0131 nedir?","questionPicture":"","correct":0,"answers":["Klorofil","Stroma","Tilakoit","Granum"]},{"question":"Kloroplast\u0131n i\u00e7indeki renksiz s\u0131v\u0131n\u0131n ad\u0131 nedir?","questionPicture":"","correct":0,"answers":["Stroma","Tilakoit","Granum","Klorofil"]},{"question":"Stromada i\u00e7 ve d\u0131\u015f zar\u0131n haricinde \u00fc\u00e7\u00fcnc\u00fc bir zar daha vard\u0131r. Bu zara ..... ad\u0131 verilir. Onlar da \u00e7ok say\u0131da katmanlar yaparak ...... olu\u015fturur.","questionPicture":"","correct":0,"answers":["Tilakoit \/ Granum","Granum \/ Tilakoit","Stroma \/ Granum","Tilakoit \/ Stroma"]},{"question":"A\u015fa\u011f\u0131da verilen kromoplast pigmetleri ve renk e\u015fle\u015ftirmelerinden hangisi yanl\u0131\u015ft\u0131r?","questionPicture":"","correct":0,"answers":["Mganga - Ye\u015fil","Ksantofil - Sar\u0131","Karoten - Turuncu","Likopin - K\u0131rm\u0131z\u0131"]},{"question":"Baz\u0131 bitki h\u00fccrelerinin kofullar\u0131nda de\u011fi\u015fik renklerin olu\u015fmas\u0131nda etkili pigmentler vard\u0131r. Bu pigmentin ad\u0131 nedir?","questionPicture":"","correct":0,"answers":["Antokyan (Antosiyanin)","Valhein (Nethra)","Yorn (Osok)","Mganga (Wizard)"]},{"question":"Tatl\u0131 sularda ya\u015f\u0131yan \u00f6karyot tek h\u00fccreli canl\u0131larda g\u00f6r\u00fcl\u00fcr. H\u00fccreye giren fazla suyu kas\u0131l\u0131p gev\u015fiyerek ve ATP harcayarak d\u0131\u015far\u0131 atar.","questionPicture":"","correct":0,"answers":["Kontraktil (Vurgan) koful","Besin kofulu","Sindirim kofulu","Bo\u015falt\u0131m kofulu"]},{"question":"\u00c7ekirde\u011fe yak\u0131n bir yerde bulunan, birbirine dik, silindir \u015fekilli iki sentroyelden olu\u015fan yap\u0131n\u0131n ad\u0131 nedir?","questionPicture":"","correct":0,"answers":["Sentrozom","Mitokondri","Kloroplast","Koful"]},{"question":"H\u00fccrenin y\u00f6netim ve kal\u0131t\u0131m merkezidir. Protein sentezi, b\u00fcy\u00fcme, geli\u015fme ve b\u00f6l\u00fcnme gibi metabolik olaylar\u0131 denetler.","questionPicture":"","correct":0,"answers":["\u00c7ekirdek","\u00c7ekirdek\u00e7ik","\u00c7ekirdek Zar\u0131","\u00c7ekirdek Plazmas\u0131"]},{"question":"\u00c7ift katl\u0131 bir zar olup sitoplazma ve \u00e7ekirdek s\u0131v\u0131s\u0131n\u0131 birbirinden ay\u0131r\u0131r.","questionPicture":"","correct":0,"answers":["\u00c7ekirdek zar\u0131","Endoplazmik Retikulum zar\u0131","\u00c7ekirdek Plazmas\u0131","H\u00fccre zar\u0131"]},{"question":"\u00c7ekirde\u011fin i\u00e7ini dolduran s\u0131v\u0131d\u0131r.","questionPicture":"","correct":0,"answers":["\u00c7ekirdek Plazmas\u0131","\u00c7ekirdek\u00e7ik","Kromatin","Sentromer"]},{"question":"Kromatinlerin \u00f6zelle\u015fmi\u015f k\u0131s\u0131mlar\u0131 olup yap\u0131s\u0131nda DNA, RNA ve proteinler bulunur.","questionPicture":"","correct":0,"answers":["\u00c7ekirdek\u00e7ik","\u00c7ekirdek","\u00c7ekirdek Plazmas\u0131","Kromatit"]},{"question":"\u00c7ekirdek s\u0131v\u0131s\u0131 i\u00e7inde DNA ve proteinden olu\u015fan da\u011f\u0131n\u0131k uzun iplik \u015feklindeki yap\u0131lara denir.","questionPicture":"","correct":0,"answers":["Kromatin","Kromozom","\u0130\u011f","Kromatit"]},{"question":"Kromozom \u00fczerinde canl\u0131ya \u00f6zg\u00fc kal\u0131tsal karakterlerini ta\u015f\u0131yan ...... bulunur.","questionPicture":"","correct":0,"answers":["Genler","Kromozomlar","Kromatinler","Kromatitler"]},{"question":"\u00d6karyot h\u00fccrelere \u015fekil veren ve h\u00fccre i\u00e7i organizasyonu sa\u011flayan protein yap\u0131l\u0131 elemanlar\u0131n t\u00fcm\u00fcne denir.","questionPicture":"","correct":0,"answers":["H\u00fccre iskeleti","H\u00fccre \u00e7eperi","H\u00fccre zar\u0131","Homolog kromozom"]},{"question":"Baz\u0131 tek h\u00fccreli canl\u0131lar b\u00f6l\u00fcnd\u00fcklerinde birbirlerinden ayr\u0131lmayarak ne olu\u015ftururlar?","questionPicture":"","correct":0,"answers":["Koloni","Grup","S\u0131n\u0131f","Okul"]},{"question":"Tatl\u0131 sularda ya\u015fayan bir kolonidir. H\u00fccre say\u0131s\u0131 8000-40000 aras\u0131nda de\u011fi\u015fir.","questionPicture":"","correct":0,"answers":["Volvox","Matrix","Eudorina","Pandorina"]},{"question":"\u0130nsan v\u00fccudunda da b\u00fct\u00fcn dokular\u0131 ve organlar\u0131 olu\u015fturan ana h\u00fccrelerdir.","questionPicture":"","correct":0,"answers":["K\u00f6k h\u00fccreler","Volvox h\u00fccreleri","Koloni h\u00fccreleri","Gen h\u00fccreleri"]},{"question":"Bir canl\u0131dan al\u0131nan h\u00fccrenin veya dokular\u0131n kontroll\u00fc \u015fartlar alt\u0131nda yeti\u015ftirilmesine denir.","questionPicture":"","correct":0,"answers":["H\u00fccre\/Doku k\u00fclt\u00fcr\u00fc","H\u00fccre\/Doku gelene\u011fi","H\u00fccre\/Doku adetleri","H\u00fccre\/Doku bilmem nesi"]},{"question":"\u00d6karyot h\u00fccrelerde bulunan kloroplast ve mitokondri organellerinin olu\u015fumunu a\u00e7\u0131klamaya \u00e7al\u0131\u015fmaktad\u0131r.","questionPicture":"","correct":0,"answers":["Endosimbiyosiz Hipotezi","Endosimbiyosiz Kanunu","Endosimbiyosiz Kural\u0131","Endosimbiyosiz Deneyi"]},{"question":"Canl\u0131lar\u0131n benzer ve ortak \u00f6zelliklerine g\u00f6re grupland\u0131r\u0131lmas\u0131na ne ad verilir?","questionPicture":"","correct":0,"answers":["S\u0131n\u0131fland\u0131rma","Okulland\u0131rma","Dizilim","S\u0131ralama"]},{"question":"Bilinen ve kabul g\u00f6ren ilk s\u0131n\u0131fland\u0131rmay\u0131 ilk kim yapm\u0131\u015ft\u0131r?","questionPicture":"","correct":0,"answers":["Aristotales","Enes I\u015f\u0131k","Linnaeus","John Ray"]},{"question":"G\u00fcn\u00fcm\u00fczde de kullan\u0131lan modern s\u0131n\u0131fland\u0131rman\u0131n temelini kim olu\u015fmu\u015ftur?","questionPicture":"","correct":0,"answers":["Carolus Linnaeus","Aristotales","Enes I\u015f\u0131k","John Ray"]},{"question":"Canl\u0131lar\u0131n d\u0131\u015f g\u00f6r\u00fcn\u00fc\u015f\u00fcne, g\u00f6rev benzerliklerine ve ya\u015fad\u0131klar\u0131 yere bak\u0131larak yap\u0131lan s\u0131n\u0131fland\u0131rmaya denir.","questionPicture":"","correct":0,"answers":["Ampirik","Filogenetik","Analog","Homolog"]},{"question":"K\u00f6kenleri farkl\u0131, d\u0131\u015f g\u00f6r\u00fcn\u00fc\u015fleri ve g\u00f6revleri ayn\u0131 olan organlara denir.","questionPicture":"","correct":0,"answers":["Analog","Homolog","Ampirik","Filogenetik"]},{"question":"Canl\u0131lar\u0131n k\u00f6ken birli\u011fine, akrabal\u0131k derecelerine ve evrimsel basamaklar\u0131na g\u00f6re yap\u0131lan s\u0131n\u0131fland\u0131rmaya denir.","questionPicture":"","correct":0,"answers":["Filogenetik","Ampirik","Analog","Homolog"]},{"question":"\u0130kili adland\u0131rmada verilen isimlerden ilk kelime ait oldu\u011fu ..... ifade eder. \u0130kinci kelime ise ...... olarak kullan\u0131l\u0131r.","questionPicture":"","correct":0,"answers":["Cins \/ Tan\u0131mlay\u0131c\u0131 ad","Tan\u0131mlay\u0131c\u0131 ad \/ Cins","Cins \/ Takma ad","Takma ad \/ Cins"]},{"question":"\u0130kili adland\u0131rmada cins ve tan\u0131mlay\u0131c\u0131 ad\u0131n birlikte olu\u015fturdu\u011fu ad nedir?","questionPicture":"","correct":0,"answers":["T\u00fcr","Familya","Tak\u0131m","S\u0131n\u0131f"]},{"question":"Bakterilerde h\u00fccre zar\u0131n\u0131n \u00fcst\u00fcnde kompleks karbonhidratlar\u0131n amino asitlerle bile\u015fiminden olu\u015fan ....... ad\u0131 verilen h\u00fccre duvar\u0131 bulunur.","questionPicture":"","correct":0,"answers":["Peptidoglikan","Pentadoglikan","Pilus","Kaps\u00fcl"]},{"question":"H\u00fccre duvar\u0131n\u0131n d\u0131\u015f\u0131nda baz\u0131 bakterilerde polisakkaritten meydana gelmi\u015f koruyucu bir ...... bulunur.","questionPicture":"","correct":0,"answers":["Kaps\u00fcl","Kam\u00e7\u0131","Pilus","Peptidoglikan"]},{"question":"Baz\u0131 bakterilerde aktif haraketi sa\u011flayan yap\u0131ya ne ad verilir?","questionPicture":"","correct":0,"answers":["Kam\u00e7\u0131","Kaps\u00fcl","Plazmit","Endospor"]},{"question":"Bakterilerin y\u00fczeylere ve birbirlerine tutunmak i\u00e7in var olan k\u0131sa uzant\u0131lar\u0131na ne ad verilir?","questionPicture":"","correct":0,"answers":["Pilus","Peptidoglikan","Kaps\u00fcl","Kam\u00e7\u0131"]},{"question":"Baz\u0131 bakterilerde bulunan ve h\u00fccre kromozomundan ba\u011f\u0131ms\u0131z olarak \u00e7o\u011falan k\u00fc\u00e7\u00fck halka \u015feklindeki DNA para\u00e7alar\u0131na ne ad verilir?","questionPicture":"","correct":0,"answers":["Plazmit","Tilakoit","Peptidoglikan","Endospor"]},{"question":"Bakterilerin uygun olmayan ko\u015fullarda olu\u015fturdu\u011fu dayan\u0131kl\u0131 yap\u0131lara ne ad verilir?","questionPicture":"","correct":0,"answers":["Endospor","Plazmit","Tilakoit","Kaps\u00fcl"]},{"question":"Bakterilerde iki birey pilus arac\u0131l\u0131\u011f\u0131yla birbirine ba\u011flan\u0131r. Bireyler aras\u0131nda ge\u00e7ici bir sitoplazma k\u00f6pr\u00fcs\u00fc kurulur. K\u00f6pr\u00fc ile bir bireyden di\u011ferine plazmit arac\u0131l\u0131\u011f\u0131yla gen aktar\u0131m\u0131 olur. Bu olaya ne ad verilir?","questionPicture":"","correct":0,"answers":["Konjugasyon","Transd\u00fcksiyon","Transformasyon","Transformers"]},{"question":"Bir bakteri DNA s\u0131n\u0131n vir\u00fcsler arac\u0131l\u0131\u011f\u0131yla ta\u015f\u0131nmas\u0131d\u0131r.","questionPicture":"","correct":0,"answers":["Transd\u00fcksiyon","Transformasyon","Konjugasyon","Endospor"]},{"question":"Bir bakterinin \u00f6l\u00fcm, ayr\u0131\u015fma sonucu ortama verdi\u011fi DNA n\u0131n ayn\u0131 t\u00fcr ba\u015fka bir bakteriye al\u0131n\u0131p kendi kromozom ve DNA s\u0131na eklenmesidir.","questionPicture":"","correct":0,"answers":["Transformasyon","Transformers","Optimus","Bumble Bee"]},{"question":"Sadece oksijenli ortamda ya\u015fayabilen bakterilerdir.","questionPicture":"","correct":0,"answers":["Aerob","Anaerob","Ge\u00e7ici aerob","Ge\u00e7ici anaerob"]},{"question":"Ge\u00e7ici aerob ve ge\u00e7ici anaerob bakteriler birlikte adland\u0131r\u0131lmas\u0131 a\u015fa\u011f\u0131dakilerden hangisidir?","questionPicture":"","correct":0,"answers":["Fak\u00fcltatif","Fak\u00fclteit\u0131p","Aeanarob","Anaaerob"]},{"question":"Parazit bakterilerin hastal\u0131k yapanlar\u0131na ne ad verilir?","questionPicture":"","correct":0,"answers":["Patojen","\u0130llbacteria","Hastojen","Kapotojen"]},{"question":"Karbondioksiti hidrojen ile birle\u015ftirip metan gaz\u0131 olu\u015fturarak enerji elde eden arke t\u00fcr\u00fcd\u00fcr.","questionPicture":"","correct":0,"answers":["Metanojenik","Halofil","Termofil","Pisikrofilik"]},{"question":"Omurgal\u0131 hayvanlar\u0131n kan\u0131nda parazit olarak ya\u015fayan ve Afrika uyku hastal\u0131\u011f\u0131na sebep olan kam\u00e7\u0131l\u0131 tek h\u00fccreli canl\u0131lard\u0131r.","questionPicture":"","correct":0,"answers":["Tripanosoma","\u00d6glena","Wukong","Amip"]},{"question":"\u00d6glenan\u0131n etraf\u0131n\u0131 \u00e7evreleyen sert ve esnek yap\u0131ya ne ad verilir?","questionPicture":"","correct":0,"answers":["Pelikula","Stigma","Tripanosoma","Paramesyum"]},{"question":"\u00d6glenan\u0131n kam\u00e7\u0131s\u0131n\u0131n k\u00f6k k\u0131sm\u0131ndaki \u0131\u015f\u0131\u011fa duyarl\u0131 g\u00f6z lekesinin ad\u0131 nedir?","questionPicture":"","correct":0,"answers":["Stigma","Pelikula","Aleister","Trikosist"]},{"question":"Paramesyumlar\u0131n v\u00fccudu d\u0131\u015f taraftan hangi yap\u0131 ile kapl\u0131d\u0131r?","questionPicture":"","correct":0,"answers":["Pelikula","Kam\u00e7\u0131","Pilus","Mezozom"]},{"question":"Paramesyun sillerinin alt\u0131nda bulunan yak\u0131c\u0131 t\u00fcyc\u00fcklerin ad\u0131 nedir?","questionPicture":"","correct":0,"answers":["Trikosist","Tilakoit","Plazmodyum","Konjugasyon"]},{"question":"E\u015feysiz \u00fcremenin e\u015feyli \u00fcremeyi takip etti\u011fi d\u00f6l alma\u015f\u0131 olay\u0131n\u0131n bilimsel ad\u0131 nedir?","questionPicture":"","correct":0,"answers":["Metagenez","Konjugasyon","Liken","Fitoplankton"]},{"question":"Algler yedek besin maddesi olarak ne depo ederler?","questionPicture":"","correct":0,"answers":["Ni\u015fasta","Glikojen","Sel\u00fcloz","Kitin"]},{"question":"Algler baz\u0131 mantarlar ile neleri meydana getirirler?","questionPicture":"","correct":0,"answers":["Likenleri","Planktonlar\u0131","C\u0131v\u0131k mantarlar\u0131","Bitkileri"]},{"question":"Tek h\u00fccreli, \u00e7ok \u00e7ekirdekli, amipsi hareket eden, belirli bir h\u00fccre \u015fekli ve \u00e7eperi olmayan \u00f6karyot canl\u0131lard\u0131r.","questionPicture":"","correct":0,"answers":["C\u0131v\u0131k mantarlar","Algler","Plazmodyumlar","Sporlular"]},{"question":"Haraket organeli olmayan tek h\u00fccreli \u00f6karyot canl\u0131lard\u0131r. Besin kofullar\u0131 ve kontraktil kofullar\u0131 bulunmaz.","questionPicture":"","correct":0,"answers":["Sporlular","Algler","Plazmodyumlar","Silliler"]},{"question":"\u00d6karyot canl\u0131lar olup nemli ortamlarda ya\u015farlar. Baz\u0131lar\u0131 tek baz\u0131lar\u0131 \u00e7ok h\u00fccrelidir. T\u00fcm\u00fc heterotroftur.","questionPicture":"","correct":0,"answers":["Mantarlar","C\u0131v\u0131k mantarlar","Bitkiler","Hayvanlar"]},{"question":"Mantarlarda di\u015fi ve erkek \u00fcreme h\u00fccresine gerek duymadan yeni bir canl\u0131y\u0131 olu\u015fturabilen kal\u0131n \u00e7eperli \u00fcreme h\u00fccreleridir.","questionPicture":"","correct":0,"answers":["Sporlar","Algler","Likenler","Rizoitler"]},{"question":"Mantarlar heterotrof beslenmeleri ve glikojen depolamalar\u0131yla kimlere benzerler?","questionPicture":"","correct":0,"answers":["Hayvanlara","Bitkilere","\u0130nsanlara","Protistalara"]},{"question":"Bitkilerin h\u00fccre duvarlar\u0131 ne yap\u0131l\u0131d\u0131r?","questionPicture":"","correct":0,"answers":["Sel\u00fcloz","Kitin","Ni\u015fasta","Glikojen"]},{"question":"Damars\u0131z tohumsuz bitkilerin y\u00fczeylere tutunmalar\u0131na yarayan k\u00f6ks\u00fc uzant\u0131lara ne ad verilir?","questionPicture":"","correct":0,"answers":["Rizoit","K\u00f6k","Pilus","Rizom"]},{"question":"Damarl\u0131 tohumsuz bitkilerin toprak alt\u0131 g\u00f6vdelerine ne ad verilir?","questionPicture":"","correct":0,"answers":["Rizom","Rizoit","Rizozom","\u00c7enek"]},{"question":"Kozalakl\u0131 bitkiler olarak da adland\u0131r\u0131l\u0131r. Ger\u00e7ek \u00e7i\u00e7ekleri yoktur. Bu bitkilerde kozalak \u00e7i\u00e7ektir ve kozalaklar tek e\u015feylidir.","questionPicture":"","correct":0,"answers":["A\u00e7\u0131k tohumlu bitkiler","Kapal\u0131 tohumlu bitkiler","Damars\u0131z tohumsuz bitkiler ","Damarl\u0131 tohumsuz bitkiler"]},{"question":"Bilimsel ad\u0131 kotiledondur. Tohumda bulunan ve besin depo eden yaprak\u00e7\u0131klard\u0131r.","questionPicture":"","correct":0,"answers":["\u00c7enek","\u00c7anak","\u00c7\u00f6mlek","Tabak"]},{"question":"Ger\u00e7ek \u00e7i\u00e7ek ve tohum taslaklar\u0131 vard\u0131r. Tohumlar\u0131n\u0131n etraf\u0131 meyve ile \u00f6rt\u00fcl\u00fcd\u00fcr. Otsu ve odunsu \u00e7e\u015fitleri vard\u0131r.","questionPicture":"","correct":0,"answers":["Kapal\u0131 tohumlu bitkiler","A\u00e7\u0131k tohumlu bitkiler","Damars\u0131z tohumsuz bitkiler","Damarl\u0131 tohumsuz bitkiler"]},{"question":"A\u015fa\u011f\u0131dakilerden hangisi omurgas\u0131z hayvanlardan de\u011fildir?","questionPicture":"","correct":0,"answers":["Bal\u0131klar","S\u00fcngerler","Eklembacakl\u0131lar","S\u00f6lenterler"]},{"question":"Yass\u0131 solucanlar\u0131n, suyun fazlas\u0131n\u0131 d\u0131\u015far\u0131 atan alev h\u00fccrelerinin bulundu\u011fu bo\u015falt\u0131m organ\u0131na ne ad verilir?","questionPicture":"","correct":0,"answers":["Protonefridyum","Hermafrodit","Anlad\u0131m Hocam","Nefridyum"]},{"question":"Denizlerde, tatl\u0131 sularda ve karada ya\u015farlar. V\u00fccutlar\u0131 uzun ve segmentlidir. Radyal simetriye sahip olan bu hayvanlarda ger\u00e7ek v\u00fccut bo\u015fluklar\u0131 bulunur. A\u015fa\u011f\u0131daki hayvanlardan hangisi bu tan\u0131ma uyar?","questionPicture":"","correct":0,"answers":["Halkal\u0131 Solucanlar","Yass\u0131 Solucanlar","Yuvarlak Solucanlar","\u00c7enesiz Bal\u0131klar"]},{"question":"V\u00fccutlar\u0131 silindirik yap\u0131l\u0131 ve segmentsizdir. Genellikle parazit ya\u015farlar. Sindirim bo\u015flu\u011funda a\u011f\u0131z ve an\u00fcs olmak \u00fczere iki a\u00e7\u0131kl\u0131k bulunur. A\u015fa\u011f\u0131daki hayvanlardan hangisi bu tan\u0131ma uyar?","questionPicture":"","correct":0,"answers":["Yuvarlak Solucanlar","Halkal\u0131 Solucanlar","Yass\u0131 Solucanlar","K\u0131k\u0131rdakl\u0131 Bal\u0131klar"]},{"question":"Halkal\u0131 solucanlar\u0131n bo\u015falt\u0131m organ\u0131na ne ad verilir?","questionPicture":"","correct":0,"answers":["Nefridyum","Hermafrodit","Protonefridyum","Malpighi"]},{"question":"Dola\u015f\u0131m sisteminin ve kapal\u0131 kan dola\u015f\u0131m\u0131n\u0131n g\u00f6r\u00fcld\u00fc\u011f\u00fc ilk hayvan grubudur.","questionPicture":"","correct":0,"answers":["Halkal\u0131 Solucanlar","Yuvarlak Solucanlar","Yass\u0131 Solucanlar","Eklem Bacakl\u0131lar"]},{"question":"B\u00f6ceklerin d\u0131\u015f iskeletleri a\u015fa\u011f\u0131daki maddelerin hangisinden yap\u0131lm\u0131\u015ft\u0131r?","questionPicture":"","correct":0,"answers":["Kitin","Ni\u015fasta","Glikojen","Sel\u00fcloz"]},{"question":"B\u00f6ceklerin bo\u015falt\u0131m organ\u0131 olan t\u00fcplerin \u00f6zel ad\u0131 nedir?","questionPicture":"","correct":0,"answers":["Malpighi","Trake","Metamorfoz","Nefridyum"]},{"question":"B\u00f6ceklerin yapt\u0131\u011f\u0131 solunuma ne ad verilir?","questionPicture":"","correct":0,"answers":["Trake","Malpighi","Solunum","Protonefridyum"]},{"question":"Bal\u0131klar\u0131n yapt\u0131\u011f\u0131 solunuma ne ad verilir?","questionPicture":"","correct":0,"answers":["Solunga\u00e7 Solunumu","Y\u00fczge\u00e7 Solunumu","Pul Solunumu","Akci\u011fer Solunumu"]},{"question":"Tuzlu sularda ya\u015farlar. H\u0131zl\u0131 y\u00fczerler. Keskin bir g\u00f6rme yetenekleri vard\u0131r. \u0130yi koku al\u0131rlar. Ayr\u0131ca y\u00fczme keseleri de yoktur. A\u015fa\u011f\u0131daki hayvanlardan hangisi bu tan\u0131ma uyar?","questionPicture":"","correct":0,"answers":["K\u0131k\u0131rdakl\u0131 Bal\u0131klar","\u00c7enesiz Bal\u0131klar","Kemikli Bal\u0131klar","\u0130ki Ya\u015faml\u0131lar"]},{"question":"Ba\u015fkala\u015f\u0131m\u0131n bilimsel ismi nedir?","questionPicture":"","correct":0,"answers":["Metamorfoz","Megatron","Megamorfoz","Metatron"]},{"question":"Timsahlar\u0131n, suya dald\u0131klar\u0131nda bas\u0131nc\u0131n etkisiyle a\u00e7\u0131lan atardamarlar aras\u0131nda bulunan kanal\u0131n ad\u0131 nedir?","questionPicture":"","correct":0,"answers":["Paniza","Diyafram","Zephys","Krixi"]},{"question":"Kurba\u011fa yavrular\u0131na ne ad verilir?","questionPicture":"","correct":0,"answers":["\u0130riba\u015f","Kocaba\u015f","Kocakafa","\u0130rikafa"]},{"question":"Karada ve suda ya\u015farlar. V\u00fccutlar\u0131n\u0131n neredeyse tamam\u0131 keratinden olu\u015fan t\u00fcylerle kapl\u0131d\u0131r. Bu tan\u0131m a\u015fa\u011f\u0131daki hayvanlardan hangisine aittir?","questionPicture":"","correct":0,"answers":["Ku\u015flar","Bal\u0131klar","\u0130ki Ya\u015faml\u0131lar","Memeliler"]},{"question":"Ku\u015flarda kar\u0131n ve g\u00f6\u011f\u00fcs bo\u015flu\u011funu ay\u0131ran ince zara ne ad verilir?","questionPicture":"","correct":0,"answers":["Diyafram Zar\u0131","Akci\u011fer Zar\u0131","Kar\u0131n Zar\u0131","G\u00f6\u011f\u00fcs Zar\u0131"]},{"question":"A\u015fa\u011f\u0131daki hayvanlardan hangisi so\u011fuk kanl\u0131 de\u011fildir?","questionPicture":"","correct":0,"answers":["Kartal","Timsah","K\u00f6pek bal\u0131\u011f\u0131","Kaplumba\u011fa"]},{"question":"Memeliler akci\u011fer solunumu yaparlar. Akci\u011ferlerinde bulunan keseciklere ne ad verilir?","questionPicture":"","correct":0,"answers":["Alveol","Diyafram","Malpighi","Trake"]},{"question":"Memeliler ile ilgili a\u015fa\u011f\u0131dakilerden hangisi yanl\u0131\u015ft\u0131r?","questionPicture":"","correct":0,"answers":["Tamam\u0131nda i\u00e7 geli\u015fme g\u00f6r\u00fcl\u00fcr.","Kalpleri 4 odac\u0131kl\u0131d\u0131r.","Tamam\u0131nda i\u00e7 d\u00f6llenme g\u00f6r\u00fcl\u00fcr.","Kastan yap\u0131lm\u0131\u015f diyaframa sahiptirler."]},{"question":"Plasental\u0131 memelilerin, geli\u015fim s\u0131ras\u0131nda embriyonun madde al\u0131\u015fveri\u015fi ihtiyac\u0131n\u0131 sa\u011flayan \u00f6zel yap\u0131n\u0131n ad\u0131 nedir?","questionPicture":"","correct":0,"answers":["Plasenta","Uterus","Platipus","Ekidna"]},{"question":"A\u015fa\u011f\u0131daki bilim adamlar\u0131ndan hangisi vir\u00fcslerle ilgili \u00e7al\u0131\u015fmada bulunmam\u0131\u015ft\u0131r?","questionPicture":"","correct":0,"answers":["Rudolph Virchow","Adolf Mayer","Dimitri \u0130vanowsky","Martinus Beijerinck"]},{"question":"Vir\u00fcslerin yap\u0131 olarak d\u0131\u015fta bulunan protein k\u0131l\u0131f\u0131n di\u011fer ad\u0131 nedir?","questionPicture":"","correct":0,"answers":["Kapsid","Genom","Bakteriyofaj","Alveol"]},{"question":"Vir\u00fcslerde kapsidin i\u00e7inde bulunan bir \u00e7e\u015fit y\u00f6netici molek\u00fcl\u00fcn ad\u0131 nedir?","questionPicture":"","correct":0,"answers":["Genom","Protein k\u0131l\u0131f","Faj","Lizis"]},{"question":"Bakterilerde \u00e7o\u011falan DNA l\u0131 vir\u00fcslere ne ad verilir?","questionPicture":"","correct":0,"answers":["Bakteriyofaj","Kapsid","Konak\u00e7\u0131","Baktevir\u00fcs"]},{"question":"A\u015fa\u011f\u0131dakilerden hangisi vir\u00fcslerin canl\u0131 varl\u0131klara benzeyen \u00f6zelliklerinden de\u011fildir?","questionPicture":"","correct":0,"answers":["Canl\u0131 d\u0131\u015f\u0131nda kristalle\u015firler.","Y\u00f6netici molek\u00fcl bulundururlar.","Mutasyona u\u011frayabilirler.","Konak\u00e7\u0131 olarak adland\u0131r\u0131lan canl\u0131 bir h\u00fccre i\u00e7inde \u00e7o\u011falabilirler."]},{"question":"Bakteri i\u00e7inde a\u015f\u0131r\u0131 \u00e7o\u011falan fajlar\u0131n bakteriyi par\u00e7alayarak serbest hale ge\u00e7mesi olay\u0131na ne ad verilir?","questionPicture":"","correct":0,"answers":["Lizis","Fajlar \u0130syanda","\u0130nterferon","Genom"]},{"question":"Bir h\u00fccreye vir\u00fcs enfekte oldu\u011funda h\u00fccrenin salg\u0131lad\u0131\u011f\u0131 bir \u00e7e\u015fit koruyucu proteinin ad\u0131 nedir?","questionPicture":"","correct":0,"answers":["\u0130nterferon","Litik D\u00f6ng\u00fc","Herpes","Kapsid"]},{"question":"A\u015fa\u011f\u0131dakilerden hangisi bir vir\u00fcs hastal\u0131\u011f\u0131 de\u011fildir?","questionPicture":"","correct":0,"answers":["Trojan","U\u00e7uk","Kuduz","Grip"]}];
+    window.questionsPerQuiz = 30;
+    $('.tooltipped').tooltip('remove');
+    window.repTru = '';
+    function endGame()
+    {
+        $('.outer-wrapper').hide('fast');
+        $('.results').html('30 sorunun ' + score + ' sorusunu doğru cevapladınız!'
+        + '<br>' +
+        'Skorunuz:  ' + (score/questions.length*100|0) + '%.');
+        $('.swiper-wrapper div').removeClass('active');
+
+        var $table = $('.table-results');
+        $table.find('.question-row:not(.row-template)').remove();
+        for(var i in questions){
+            if(!questions.hasOwnProperty(i)) continue;
+            var $row = $('.row-template').clone();
+            $row.removeClass('row-template');
+            $row.find('.question-cell').text(questions[i].question);
+            $row.find('.responce-cell').text(questions[i].userAnswer)
+                .addClass(questions[i].userCorrect? 'correct green lighten-2' : 'error red lighten-2');
+            $row.find('.correct-cell').text(questions[i].answers[questions[i].correct]);
+            repTru = questions[i].answers[questions[i].correct];
+            $table.append($row);
+        }
+        $('.results-page').show('fast');
+    }
+    $('a div').flowtype({
+        minimum   : 149,
+        maximum   : 349,
+        minFont   : 9,
+        maxFont   : 40,
+        fontRatio : 30
+    });
+    var ins = 1;
+    for(var i = 0; i < questions.length; i++){
+        $('.swiper-wrapper').append('' +
+            '<div class="swiper-slide" id="'+ins+'"><a href="#!">'+ins+'</a></div>'
+        )
+        ins++;
+    }
+//		showQuestion(0);
+
+
+
+    var allQuestions;
+    function startGame(){
+        questions.shuffle();
+        //alert(questions.length + " "+questionsPerQuiz);
+        allQuestions = questions.slice();
+        if(questions.length > questionsPerQuiz){
+            questions.splice(questionsPerQuiz,questions.length-questionsPerQuiz);
+        }
+        //updateScore();
+        showQuestion(0);
+    }
+
+    $('#start-game').click(function(){
+        $('#intro_screen').hide("fast");
+        $('#outer-wrapper').show("fast");
+        startGame();
+
+    });
+
+
+
+    $('.next-question').click(function(){
+        $('.toast').remove();
+        $('.explanation-wrapper').hide('fast');
+        showNextQuestion();
+    });
+
+    $('.try-again').click(function(){
+        $('.toast').remove();
+        question = 0;
+        score = 0;
+        answered = false;
+        questions = allQuestions;
+        $('.swiper-wrapper div').removeClass('active');
+        $('.next-question').text('Next question');
+        $('.outer-wrapper').show();
+        $('.results-page').hide();
+        startGame();
+    });
+    $('.materialboxed').materialbox();
+
+    $('.materialboxed').click(function(){
+        var imgCar = $('.card-image.waves-block.waves-light.picture-wrapper');
+        if(imgCar.attr('act') == 'no'){
+            imgCar.attr('act','yes');
+            $('.card.small .card-image, .card.medium .card-image, .card.large .card-image,' +
+            ' .card.small.outer-wrapper').css({overflow: 'visible'});
+        }else{
+            imgCar.attr('act','no');
+            $('.card.small .card-image, .card.medium .card-image, .card.large .card-image,' +
+            ' .card.small.outer-wrapper').css({overflow: 'hidden'});
+        }
+
+    });
+    $('div#materialbox-overlay').click(function(){
+        $('#question-picture').css({marginLeft: '0'});
+        $('.card.small .card-image, .card.medium .card-image, .card.large' +
+        ' .card-image, .card.small.outer-wrapper').css({overflow: 'hidden'})
+    })
+    if (Modernizr.touch) {
+        $('#intro_screen').on('touchstart',function(e) {
+            var left = e.originalEvent.touches[0].pageX;
+            var top = e.originalEvent.touches[0].pageY;
+
+            $(this).append('<div class="dot" style="top:'+top+'px;left:'+left+'px;"></div>')
+            setTimeout(function(){
+                if(questions[0].answers[0] != ''){
+                    $('#intro_screen .dot:first-of-type').remove();
+                    $('#intro_screen').hide("fast");
+                    $('#outer-wrapper').show("fast");
+                    startGame();
+                }else{
+                    Materialize.toast("Sorry, there are no questions.", 500,  'error red lighten-2');
+                }
+                deleteDot();
+            },500);
+        });
+        document.body.addEventListener('touchmove',function(e){
+            e.preventDefault();
+        });
+    } else {
+        $('#intro_screen').on('mousedown',function(e) {
+            $('.toast.error.red.lighten-2').remove();
+            var left = e.pageX;
+            var top = e.pageY;
+
+            $(this).append('<div class="dot" style="top:'+top+'px;left:'+left+'px;"></div>')
+            setTimeout(function(){
+                if(questions[0].answers[0] != ''){
+                    $('#intro_screen .dot:first-of-type').remove();
+                    $('#intro_screen').hide("fast");
+                    $('#outer-wrapper').show("fast");
+                    startGame();
+                }else{
+                    Materialize.toast("Sorry, there are no questions.", 500,  'error red lighten-2');
+                }
+                deleteDot();
+            },500);
+        });
+    }
+    function deleteDot(){
+        setTimeout(function(){
+            $.each($('.toast'),function(ind,val){
+                val.remove();
+            });
+        },2500)
+
+    }
+    $(".material-placeholder").append('<div id="backgr-img"><i class="large mdi-av-play-arrow"></i></div>')
+    $(".material-placeholder").bind("mouseenter",function(){
+        $('#backgr-img').css({
+            display: 'none'
+        })
+    }).bind("mouseleave",function(){
+        $('#backgr-img').css({
+            display: 'block'
+        })
+    });
+
+
+    function showNextQuestion(){
+        showQuestion(++question);
+    }
+
+    function showQuestion(number){
+        answered = false;
+        if(!questions[number]) {endGame(); return;};
+        var ins = question+1;
+        var int = ins-1;
+        $('.swiper-wrapper #'+int).removeClass('active');
+        $('.swiper-wrapper #'+ins).addClass('active');
+        //$('.heading').text((question+1)+'/'+questions.length);
+        question = number;
+        $('.card-content p').text(questions[number].question);
+        if(questions[number].question) {
+            $('.question-wrapper p').show();
+        }
+        else {
+            $('.question-wrapper p').hide();
+        }
+        $('.explanation').text(questions[number].explanation);
+
+        var random = [0,1,2,3].shuffle();
+
+        $('.answers a').each(function(index,element){
+            var $answer = $(element);
+            $answer.removeClass('correct error apply')
+                .attr('correct',!!(questions[number].correct == random[index]))
+                .find('div').text(questions[number].answers[random[index]]);
+
+        });
+        $('#question-picture').attr("src", questions[number].questionPicture);
+        if(!questions[number].questionPicture) {
+            $('.picture-wrapper').hide();
+        }
+        else {
+            $('.picture-wrapper').show();
+            //$('#question-picture').height($('.answers').offset().top - $('.question-wrapper span').offset().top - $('.question-wrapper span').height() - 80);
+        }
+    }
+    window.mySwipe = new Swiper('.swiper-container', {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        freeMode: true
+    });
+    $('.answers a').on('click', function(e){
+        if(answered) return;
+        answered = true;
+        var $answer = $(this);
+        var correct = $answer.attr('correct')=='true';
+        if(correct) score++;
+        questions[question].userCorrect = correct;
+        questions[question].userAnswer = $answer.text();
+        $('.toast').remove();
+        if(correct) {
+            Materialize.toast("Cevabınız doğru: "+ $('.answers a[correct=true]').text(), 500, correct? 'correct green lighten-2' : 'error red lighten-2');
+            $('.toast').flowtype({
+                minimum   : 320,
+                maximum   : 429,
+                minFont   : 12,
+                maxFont   : 40,
+                fontRatio : 30
+            });
+        }else {
+            Materialize.toast("Doğru cevap: " + $('.answers a[correct=true]').text(), 500, correct? 'correct green lighten-2' : 'error red lighten-2');
+            $('.toast').flowtype({
+                minimum   : 320,
+                maximum   : 429,
+                minFont   : 11,
+                maxFont   : 40,
+                fontRatio : 30
+            });
+        }
+
+        $('.explanation-wrapper').hide('fast');
+        showNextQuestion();
+        console.log(mySwipe.activeIndex + 1);
+        window.mySwipe.slideNext(false,200);
+    });
+}
+</script>
+
+<style>
+    html{
+        background-color: #fcfcfc;
+    background-image: url('bg.jpg');background-size:cover;    }
+</style>
+</body>
+</html>
