@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duvar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+            <div class="col-lg-8 d-flex justify-content-center align-items-center mt-lg-0 mt-3">
+                <div class="canvas-parent">
+                    <canvas width="640" height="640" id="canvas">
+                    </canvas>
+                    <div id="hover"></div>
+                </div>
+            </div>
+            <div class="col-lg-4 d-flex justify-content-center align-items-center flex-column">
+                <h1 class="pixel title">Duvar</h1>
+
+                <div class="colors">
+                    <div class="bg-primary color active"></div>
+                    <div class="bg-secondary color"></div>
+                    <div class="bg-success color"></div>
+                    <div class="bg-danger color"></div>
+                    <div class="bg-warning color"></div>
+                    <div class="bg-info color"></div>
+                    <div class="bg-light color"></div>
+                    <div class="bg-dark color"></div>
+                </div>
+
+                <p class="pixel fs-1 my-5" id="cooldown">5s</p>
+
+                <button class="btn btn-success px-4 mb-lg-0 mb-5" id="cd-btn" onclick="setColor()">
+                    <p class="pixel fs-4 m-0">OK</p>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="script.js" type="module"></script>
+    <script src="bootstrap.min.js"></script>
+</body>
+
+</html>

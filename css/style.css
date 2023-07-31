@@ -1,0 +1,205 @@
+body {
+    overflow-y: scroll;
+    font-family: monospace;
+}
+
+.bg-black {
+    background-color: black !important;
+}
+
+@media screen and (min-width: 1200px) {
+    nav span {
+        display: none;
+    }
+
+    nav li:hover span {
+        display: inline;
+    }
+
+    nav li a:hover {
+        background-color: gray;
+    }
+}
+
+#main-bar {
+    height: 4px;
+    width: 0%;
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.5);
+
+}
+
+main>section {
+    height: calc(100vh - 64px);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    overflow: hidden;
+}
+
+html {
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 64px;
+}
+
+#about {
+    margin-top: 64px;
+    background-color: #f1c40f;
+}
+
+.text-black {
+    color: black;
+}
+
+#clock {
+    background-color: black;
+}
+
+.clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+.digit {
+    width: 12.5%;
+}
+
+#palette {
+    background-color: #3498db;
+}
+
+#colorbtn:hover {
+    background-color: #dd822a;
+}
+
+#colors {
+    height: 80%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+
+.colorbox {
+    border: 3px solid black;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.9);
+    font-size: 32px;
+    overflow: hidden;
+}
+
+.colortext {
+    margin-bottom: 0px;
+}
+
+.colorbox:hover p {
+    display: none;
+}
+
+.colorbox:hover::before {
+    content: "Copy";
+}
+
+.colorbox:active::before {
+    content: "Copied";
+}
+
+.colorbox:active {
+    background-color: white !important;
+}
+
+#colorbtn {
+    width: 100px;
+    font-size: 32px;
+    background-color: #ff9f43;
+    border-radius: 20px;
+    border: 3px solid black;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.9);
+}
+
+#calculator {
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+#calc {
+    width: 400px;
+    padding: 40px 20px;
+    border: 3px solid #18dcff;
+    border-radius: 25px;
+    box-shadow: 0 0 20px #18dcff;
+}
+
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 16px;
+}
+
+#calc button {
+    border: 1px solid #18dcff;
+    box-shadow: 0 0 8px #18dcff;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    background: transparent;
+}
+
+
+#result {
+    grid-column: 1/4;
+    border: 1px solid #18dcff;
+    box-shadow: 0 0 8px #18dcff;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 32px;
+    text-align: right;
+    font-weight: 900;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.95);
+}
+
+#calc,
+.neon {
+    transition: border-color 1s ease-in-out, box-shadow 1s ease-in-out;
+}
+
+#xox {
+    background-color: #32ff7e;
+}
+
+.xox-grid{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    width: 300px;
+    border: 2px solid #3d3d3d;
+}
+
+.xox-cell {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    line-height: 100px;
+    font-size: 40px;
+    font-weight: bold;
+    border: 2px solid #3d3d3d;
+}
+
+.xox-cell:hover{
+    background-color: #3ae374;
+}
+
+@media only screen and (max-width: 767px) {
+    #colors {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
