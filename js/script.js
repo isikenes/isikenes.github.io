@@ -94,53 +94,105 @@ function calcColor() {
 }
 calcColor();
 
-const xoxText=document.getElementById("xox-text");
-let isPlaying=true;
-let currentPlayer="X";
-let gameState=["","","","","","","","",""];
-const winnings=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-const cells=document.querySelectorAll(".xox-cell");
-cells.forEach(cell=>cell.addEventListener('click',handleXOXClick));
+const xoxText = document.getElementById("xox-text");
+let isPlaying = true;
+let currentPlayer = "X";
+let gameState = ["", "", "", "", "", "", "", "", ""];
+const winnings = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+const cells = document.querySelectorAll(".xox-cell");
+cells.forEach(cell => cell.addEventListener('click', handleXOXClick));
 
 function handleXOXClick(e) {
-    const clickedCell=e.target;
-    const clickedIndex=parseInt(clickedCell.getAttribute("data-cell-index"));
+    const clickedCell = e.target;
+    const clickedIndex = parseInt(clickedCell.getAttribute("data-cell-index"));
 
-    if(gameState[clickedIndex]!=="" || !isPlaying)
+    if (gameState[clickedIndex] !== "" || !isPlaying)
         return;
-    
-    gameState[clickedIndex]=currentPlayer;
-    clickedCell.innerHTML=currentPlayer;
 
-    for(let i=0;i<winnings.length;i++) {
-        let win=winnings[i];
-        if(gameState[win[0]] ===currentPlayer && gameState[win[0]] === gameState[win[1]] && gameState[win[1]] === gameState[win[2]]) {
-            xoxText.innerText=currentPlayer+" won!";
-            cells[win[0]].style.backgroundColor="#3ae374";
-            cells[win[1]].style.backgroundColor="#3ae374";
-            cells[win[2]].style.backgroundColor="#3ae374";
-            isPlaying=false;
+    gameState[clickedIndex] = currentPlayer;
+    clickedCell.innerHTML = currentPlayer;
+
+    checkWin();
+    if (isPlaying)
+        aiPlays();
+
+}
+
+function checkWin() {
+    for (let i = 0; i < winnings.length; i++) {
+        let win = winnings[i];
+        if (gameState[win[0]] === currentPlayer && gameState[win[0]] === gameState[win[1]] && gameState[win[1]] === gameState[win[2]]) {
+            xoxText.style.visibility = "visible";
+            xoxText.innerText = currentPlayer + " won!";
+            
+            cells[win[0]].style.backgroundColor = "#7efff5";
+            cells[win[1]].style.backgroundColor = "#7efff5";
+            cells[win[2]].style.backgroundColor = "#7efff5";
+            isPlaying = false;
             return;
         }
     }
 
-    if(!gameState.includes("")){
-        xoxText.innerText="Draw!";
-        isPlaying=false;
+    if (!gameState.includes("")) {
+        xoxText.style.visibility = "visible";
+        xoxText.innerText = "Draw!";
+        
+        isPlaying = false;
         return;
     }
 
-    currentPlayer= currentPlayer==="X" ? "O" : "X";
-    xoxText.innerText=currentPlayer+"'s turn!";
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
+}
+
+function aiPlays() {
+    var cellRank = [3, 2, 3, 2, 4, 2, 3, 2, 3];
+
+    for (let i = 0; i < gameState.length; i++) {
+        if (gameState[i] !== "") {
+            cellRank[i] -= 99;
+        }
+    }
+
+    for (let i = 0; i < winnings.length; i++) {
+        var a = winnings[i][0];
+        var b = winnings[i][1];
+        var c = winnings[i][2];
+
+        if (gameState[a] === gameState[b] && gameState[a] !== "" && gameState[c] === "") {
+            cellRank[c] += 10;
+        }
+        if (gameState[a] === gameState[c] && gameState[a] !== "" && gameState[b] === "") {
+            cellRank[b] += 10;
+        }
+        if (gameState[b] === gameState[c] && gameState[b] !== "" && gameState[a] === "") {
+            cellRank[a] += 10;
+        }
+
+        var bestCell = -1;
+        var highest = -999;
+
+        for (var j = 0; j < gameState.length; j++) {
+            if (cellRank[j] > highest) {
+                highest = cellRank[j];
+                bestCell = j;
+            }
+        }
+
+    }
+
+    gameState[bestCell] = "O";
+    cells[bestCell].innerHTML = "O";
+
+    checkWin();
 }
 
 function restartXOX() {
-    isPlaying=true;
-    currentPlayer="X";
-    gameState=["","","","","","","","",""];
-    xoxText.innerText="X's turn!"
-    cells.forEach(cell=>{
-        cell.innerHTML="";
-        cell.style.backgroundColor="";
+    isPlaying = true;
+    currentPlayer = "X";
+    gameState = ["", "", "", "", "", "", "", "", ""];
+    xoxText.style.visibility = "hidden";
+    cells.forEach(cell => {
+        cell.innerHTML = "";
+        cell.style.backgroundColor = "";
     });
 }

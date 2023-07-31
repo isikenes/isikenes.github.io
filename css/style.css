@@ -198,6 +198,10 @@ html {
     background-color: #3ae374;
 }
 
+#xox-text{
+    visibility: hidden;
+}
+
 @media only screen and (max-width: 767px) {
     #colors {
         grid-template-columns: repeat(2, 1fr);
