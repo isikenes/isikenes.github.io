@@ -202,6 +202,35 @@ html {
     visibility: hidden;
 }
 
+#wordle{
+    background-color: #ff9f1a;
+}
+
+.wordle-grid {
+    width: 360px;
+    display: grid;
+    grid-template-columns: repeat(5,auto);
+    gap: 10px;
+}
+
+.wordle-box {
+    width: 60px;
+    height: 60px;
+    border: 3px solid #333;
+    text-align: center;
+    line-height: 60px;
+    font-size: 40px;
+    font-weight: bold;
+}
+#wordle-input{
+    background-color: #ff9f1a;
+    border: 4px solid #333;
+    width: 200px;
+    height: 45px;
+}
+#wordle-text,#wordle-restart{
+    display: none;
+}
 @media only screen and (max-width: 767px) {
     #colors {
         grid-template-columns: repeat(2, 1fr);

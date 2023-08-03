@@ -124,7 +124,7 @@ function checkWin() {
         if (gameState[win[0]] === currentPlayer && gameState[win[0]] === gameState[win[1]] && gameState[win[1]] === gameState[win[2]]) {
             xoxText.style.visibility = "visible";
             xoxText.innerText = currentPlayer + " won!";
-            
+
             cells[win[0]].style.backgroundColor = "#7efff5";
             cells[win[1]].style.backgroundColor = "#7efff5";
             cells[win[2]].style.backgroundColor = "#7efff5";
@@ -136,7 +136,7 @@ function checkWin() {
     if (!gameState.includes("")) {
         xoxText.style.visibility = "visible";
         xoxText.innerText = "Draw!";
-        
+
         isPlaying = false;
         return;
     }
@@ -195,4 +195,50 @@ function restartXOX() {
         cell.innerHTML = "";
         cell.style.backgroundColor = "";
     });
+}
+
+//Wordle
+const wordleWords = ["which", "their", "there", "would", "other", "these", "about", "first", "could", "after", "those", "where", "being", "under", "great", "state", "world", "three", "while", "found", "might", "still", "right", "place", "every", "power", "since", "never", "order", "water", "small", "shall", "large", "point", "again", "often", "among", "house", "woman", "group", "think", "human", "later", "until", "whole", "early", "above", "study", "table", "court", "death", "level"];
+var randomWord = wordleWords[Math.round(Math.random() * wordleWords.length)].toUpperCase();
+const wordleInput = document.getElementById("wordle-input");
+const wordleBoxes = document.querySelectorAll(".wordle-box");
+var wordleGuess = 0;
+const wordleText = document.getElementById("wordle-text");
+
+function checkWord() {
+    if (wordleInput.value.length !== 5) {
+        return;
+    }
+    let word = wordleInput.value.toUpperCase();
+    for (let i = 0; i < 5; i++) {
+        wordleBoxes[i + wordleGuess * 5].innerHTML = word[i];
+        if (word[i] === randomWord[i]) {
+            wordleBoxes[i + wordleGuess * 5].style.backgroundColor = "#2ed573";
+        } else if (randomWord.includes(word[i])) {
+            wordleBoxes[i + wordleGuess * 5].style.backgroundColor = "#eccc68";
+        }
+    }
+    wordleGuess++;
+    wordleInput.value = "";
+    if (randomWord === word) {
+        document.getElementById("wordle-checker-div").style.display = "none";
+        document.getElementById("wordle-restart").style.display = "block";
+    } else if (wordleGuess == 6) {
+        document.getElementById("wordle-checker-div").style.display = "none";
+        wordleText.style.display = "block";
+        wordleText.innerText = randomWord;
+        document.getElementById("wordle-restart").style.display = "block";
+    }
+}
+
+function restartWordle() {
+    wordleBoxes.forEach(box => {
+        box.style.backgroundColor = "";
+        box.innerHTML = "";
+    })
+    wordleGuess = 0;
+    randomWord = wordleWords[Math.round(Math.random() * wordleWords.length)].toUpperCase();
+    document.getElementById("wordle-checker-div").style.display = "block";
+    wordleText.style.display = "none";
+    document.getElementById("wordle-restart").style.display = "none";
 }
