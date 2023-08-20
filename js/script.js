@@ -4,7 +4,7 @@ window.addEventListener('scroll', () => {
     let scrollPos = document.documentElement.scrollTop;
     let width = (scrollPos / height) * 100;
     mainBar.style.width = `${width}%`;
-})
+});
 
 function clockize(string) {
     if (string <= 9) {
@@ -199,7 +199,7 @@ function restartXOX() {
 
 //Wordle
 const wordleWords = ["which", "their", "there", "would", "other", "these", "about", "first", "could", "after", "those", "where", "being", "under", "great", "state", "world", "three", "while", "found", "might", "still", "right", "place", "every", "power", "since", "never", "order", "water", "small", "shall", "large", "point", "again", "often", "among", "house", "woman", "group", "think", "human", "later", "until", "whole", "early", "above", "study", "table", "court", "death", "level"];
-var randomWord = wordleWords[Math.round(Math.random() * wordleWords.length)].toUpperCase();
+var randomWord = wordleWords[(Math.round(Math.random() * wordleWords.length)) - 1].toUpperCase();
 const wordleInput = document.getElementById("wordle-input");
 const wordleBoxes = document.querySelectorAll(".wordle-box");
 var wordleGuess = 0;
@@ -242,3 +242,28 @@ function restartWordle() {
     wordleText.style.display = "none";
     document.getElementById("wordle-restart").style.display = "none";
 }
+
+//TO-DO LIST
+const newToDo = document.getElementById("todo-input");
+const todos = document.querySelector(".todos");
+todos.innerHTML = localStorage.getItem("todos");
+
+function addNewToDo() {
+    const liHTML = `<li class="list-group-item d-flex justify-content-between align-items-center">
+    <span>${newToDo.value}</span>
+    <i class="fa-regular fa-trash-can delete-todo"></i></li>`
+    todos.innerHTML += liHTML;
+    localStorage.setItem("todos", todos.innerHTML);
+    addToDoDeletion();
+    newToDo.value = "";
+}
+
+function addToDoDeletion() {
+    document.querySelectorAll(".delete-todo").forEach(del => {
+        del.addEventListener("click", e => {
+            del.parentElement.remove();
+            localStorage.setItem("todos", todos.innerHTML);
+        })
+    });
+}
+addToDoDeletion();
